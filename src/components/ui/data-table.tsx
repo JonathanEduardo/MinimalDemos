@@ -134,8 +134,8 @@ export function DataTable<TData extends object>({
 
       <div className="datatable-card">
         <Table className="text-sm">
-          <TableHeader className="bg-gray-50">
-            <TableRow className="hover:bg-transparent">
+          <TableHeader className="datatable-head-bg">
+            <TableRow className="datatable-header-row">
               {columns.map((column, index) => (
                 <TableHead
                   key={index}

@@ -47,6 +47,9 @@ html {
   --secondary-base: 240 173 78;     /* Base #F0AD4E */
   --secondary-dark: 217 145 53;     /* Tono más oscuro */
 
+  /* BASE - Texto base suave (hex #364153) */
+  --base-color: 54 65 83;
+
   /* ========================================
      NOTA: Success, Warning, Danger usan colores de Tailwind
      - success: green-500, green-600, etc.
@@ -57,33 +60,33 @@ html {
   /* ========================================
      SHADCN UI TOKENS (Light Mode)
      ======================================== */
-  --background: 0 0% 100%;
-  --foreground: 0 0% 9%;
+    --background: oklch(0.99 0 0);
+    --foreground: rgb(var(--base-color));
 
-  --card: 0 0% 100%;
-  --card-foreground: 0 0% 9%;
+    --card: oklch(1 0 0);
+    --card-foreground: rgb(var(--base-color));
 
-  --popover: 0 0% 100%;
-  --popover-foreground: 0 0% 9%;
+    --popover: oklch(1 0 0);
+    --popover-foreground: rgb(var(--base-color));
 
-  --primary: 217 62% 48%;
-  --primary-foreground: 0 0% 98%;
+    --primary: rgb(var(--primary-base));
+    --primary-foreground: oklch(0.99 0 0);
 
-  --secondary: 38 92% 50%;
-  --secondary-foreground: 0 0% 9%;
+    --secondary: rgb(var(--secondary-base));
+    --secondary-foreground: rgb(var(--base-color));
 
-  --muted: 0 0% 96%;
-  --muted-foreground: 0 0% 45%;
+    --muted: #9f9f9f;
+    --muted-foreground: #9f9f9f;
 
-  --accent: 0 0% 96%;
-  --accent-foreground: 0 0% 9%;
+    --accent: oklch(0.96 0 0);
+    --accent-foreground: rgb(var(--base-color));
 
-  --destructive: 0 72% 51%;
-  --destructive-foreground: 0 0% 98%;
+    --destructive: oklch(0.63 0.19 25);
+    --destructive-foreground: oklch(0.99 0 0);
 
-  --border: 0 0% 90%;
-  --input: 0 0% 90%;
-  --ring: 217 62% 48%;
+    --border: oklch(0.91 0 0);
+    --input: oklch(0.91 0 0);
+    --ring: rgb(var(--primary-base));
 
   --radius: 0.5rem;
 
@@ -97,14 +100,14 @@ html {
   /* ========================================
      SIDEBAR TOKENS
      ======================================== */
-  --sidebar: 217 62% 48%;
-  --sidebar-foreground: 0 0% 100%;
-  --sidebar-primary: 217 62% 38%;
-  --sidebar-primary-foreground: 0 0% 100%;
-  --sidebar-accent: 217 62% 42%;
-  --sidebar-accent-foreground: 0 0% 100%;
-  --sidebar-border: 217 62% 38%;
-  --sidebar-ring: 217 62% 38%;
+  --sidebar: color-mix(in oklab, rgb(var(--primary-dark)) 0%, white);
+  --sidebar-foreground: rgb(var(--base-color));
+  --sidebar-primary: rgb(var(--primary-base));
+  --sidebar-primary-foreground: oklch(0.99 0 0);
+  --sidebar-accent: color-mix(in oklab, rgb(var(--primary-dark)) 100%, white);
+  --sidebar-accent-foreground: rgb(var(--base-color));
+  --sidebar-border: color-mix(in oklab, rgb(var(--primary-dark)) 55%, white);
+  --sidebar-ring: rgb(var(--primary-base));
 }
 
 /* ========================================
@@ -130,7 +133,7 @@ html {
   --secondary-foreground: 0 0% 98%;
 
   --muted: 0 0% 15%;
-  --muted-foreground: 0 0% 65%;
+  --muted-foreground: #9f9f9f;
 
   --accent: 0 0% 15%;
   --accent-foreground: 0 0% 98%;
@@ -309,8 +312,71 @@ html {
   @apply transition-colors duration-200;
 }
 
+.select-trigger-base {
+  @apply h-10 w-full rounded-md border border-gray-300 bg-white px-3 text-sm;
+  @apply text-[rgb(var(--primary-dark))] data-placeholder:text-gray-400;
+  @apply focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary-base))] focus-visible:ring-offset-2;
+  @apply transition-colors duration-200;
+}
+
+.select-content-base {
+  @apply rounded-md border border-gray-200 bg-white shadow-md;
+}
+
+.select-item-base {
+  @apply text-sm text-[rgb(var(--primary-dark))] focus:bg-[rgb(var(--primary-light))/0.22];
+}
+
+.textarea-base {
+  @apply min-h-28 w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm;
+  @apply placeholder:text-gray-400;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary-base))] focus-visible:ring-offset-2;
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
 .label-base {
-  @apply text-sm font-medium text-gray-700 mb-2 block;
+  @apply text-sm font-medium text-[rgb(var(--base-color))] mb-2 block;
+}
+
+.form-field {
+  @apply flex flex-col gap-2;
+}
+
+.form-field-hint {
+  @apply text-xs text-gray-500;
+}
+
+.form-field-error {
+  @apply text-xs text-red-600;
+}
+
+.form-grid {
+  @apply grid grid-cols-1 gap-4 md:grid-cols-2;
+}
+
+.form-modal-content {
+  @apply max-w-2xl rounded-xl border border-[rgb(var(--primary-light))/0.5] bg-white p-0;
+}
+
+.form-modal-header {
+  @apply border-b border-[rgb(var(--primary-light))/0.35] px-6 py-4;
+}
+
+.form-modal-title {
+  @apply text-xl font-semibold text-[rgb(var(--primary-dark))];
+}
+
+.form-modal-description {
+  @apply mt-1 text-sm text-[rgb(var(--base-color))/0.82];
+}
+
+.form-modal-body {
+  @apply px-6 py-5;
+}
+
+.form-modal-footer {
+  @apply flex items-center justify-end gap-3 border-t border-[rgb(var(--primary-light))/0.35] px-6 py-4;
 }
 
 /* ---- ALERTS ---- */
@@ -352,7 +418,7 @@ html {
 }
 
 .table-header-cell {
-  @apply h-12 px-4 text-left align-middle font-medium text-gray-600;
+  @apply h-12 px-4 text-left align-middle font-medium text-[rgb(var(--base-color))/0.9];
 }
 
 .table-body-row {
@@ -386,19 +452,28 @@ html {
 
 .datatable-search-input {
   @apply h-11 rounded-xl border-gray-200 bg-white pl-10 text-sm;
+  @apply text-[rgb(var(--primary-dark))] placeholder:text-gray-500;
   @apply focus-visible:ring-[rgb(var(--primary-base))];
 }
 
 .datatable-toolbar-btn {
-  @apply h-11 rounded-xl border-gray-200 bg-white text-muted;
+  @apply h-11 rounded-xl border-gray-200 bg-white text-[rgb(var(--primary-dark))];
 }
 
 .datatable-card {
   @apply overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm;
 }
 
+.datatable-head-bg {
+  @apply bg-gray-50;
+}
+
+.datatable-header-row {
+  @apply border-b border-gray-200 hover:bg-transparent;
+}
+
 .datatable-head-cell {
-  @apply h-14 px-6 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-gray-400;
+  @apply h-16 px-10 text-xs font-semibold uppercase tracking-[0.12em] text-[rgb(var(--base-color))/0.9];
 }
 
 .datatable-row {
@@ -406,7 +481,7 @@ html {
 }
 
 .datatable-cell {
-  @apply px-6 py-5 align-middle text-sm text-gray-700;
+  @apply px-10 py-5 align-middle text-sm text-[rgb(var(--base-color))];
 }
 
 .datatable-empty {
@@ -439,7 +514,7 @@ html {
 }
 
 .datatable-pagination-page-inactive {
-  @apply border border-transparent bg-transparent text-gray-600 hover:bg-gray-100;
+  @apply border border-transparent bg-transparent text-[rgb(var(--base-color))/0.9] hover:bg-gray-100;
 }
 
 .datatable-provider-name {
@@ -447,31 +522,31 @@ html {
 }
 
 .datatable-provider-role {
-  @apply text-xs uppercase tracking-wide text-gray-400;
+  @apply text-xs uppercase tracking-wide text-[rgb(var(--base-color))/0.65];
 }
 
 .datatable-requester-avatar {
-  @apply flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600;
+  @apply flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-[rgb(var(--base-color))/0.85];
 }
 
 .datatable-requester-name {
-  @apply font-medium text-gray-900;
+  @apply font-medium text-[rgb(var(--base-color))];
 }
 
 .datatable-date {
-  @apply font-medium text-gray-900;
+  @apply font-medium text-[rgb(var(--base-color))];
 }
 
 .datatable-time {
-  @apply text-xs text-gray-500;
+  @apply text-xs text-[rgb(var(--base-color))/0.78];
 }
 
 .datatable-access-chip {
-  @apply rounded-md bg-gray-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-600;
+  @apply rounded-md bg-gray-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-[rgb(var(--base-color))/0.88];
 }
 
 .datatable-action-muted {
-  @apply text-xs font-semibold uppercase tracking-wide italic text-gray-400;
+  @apply text-xs font-semibold uppercase tracking-wide italic text-[rgb(var(--base-color))/0.7];
 }
 
 .datatable-action-btn {
@@ -503,6 +578,38 @@ html {
 
 [data-state=expanded] [data-sidebar=group-label] {
   font-size: 0.85rem !important;
+}
+
+/* Sidebar en móvil: más espacio táctil y lectura */
+@media (max-width: 767px) {
+  [data-mobile=true] [data-sidebar=menu] {
+    gap: 0.3rem !important;
+  }
+
+  [data-mobile=true] [data-sidebar=menu-button] {
+    min-height: 2.9rem !important;
+    padding-top: 0.6rem !important;
+    padding-bottom: 0.6rem !important;
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+    font-size: 1rem !important;
+  }
+
+  [data-mobile=true] [data-sidebar=menu-button] svg {
+    width: 1.15rem !important;
+    height: 1.15rem !important;
+  }
+
+  [data-mobile=true] [data-sidebar=menu-sub] {
+    gap: 0.3rem !important;
+  }
+
+  [data-mobile=true] [data-sidebar=menu-sub-button] {
+    min-height: 2.7rem !important;
+    padding-top: 0.5rem !important;
+    padding-bottom: 0.5rem !important;
+    font-size: 0.98rem !important;
+  }
 }
 
 @media (min-width: 1024px) {
@@ -570,7 +677,7 @@ html {
 }
 
 .text-muted {
-  @apply text-gray-500;
+  @apply text-[#9f9f9f];
 }
 
 .text-primary {
@@ -579,6 +686,10 @@ html {
 
 .text-secondary {
   @apply text-[rgb(var(--secondary-base))];
+}
+
+.text-base-color {
+  @apply text-[rgb(var(--base-color))];
 }
 
 .text-success {
@@ -703,7 +814,7 @@ code {
   --secondary: oklch(0.269 0 0);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
+  --muted-foreground: #9f9f9f;
   --accent: oklch(0.269 0 0);
   --accent-foreground: oklch(0.985 0 0);
   --destructive: oklch(0.704 0.191 22.216);

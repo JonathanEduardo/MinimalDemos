@@ -1,6 +1,25 @@
 import { AppLayout } from "@/components/templates"
-import { Button, Badge, Alert, Card, StatCard } from "@/components/atoms"
+import {
+  Button,
+  Badge,
+  Alert,
+  Card,
+  StatCard,
+} from "@/components/atoms"
+import { FormModalExample } from "@/components/organisms"
 import { DataTable, type DataTableColumn } from "@/components/ui/data-table"
+import { Input } from "@/components/ui/input"
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"
+import { Textarea } from "@/components/ui/textarea"
+import { Label } from "@/components/ui/label"
 import { Calendar, Check, X, AlertTriangle } from "lucide-react"
 
 /* ========================================
@@ -150,6 +169,12 @@ export function ComponentsPage() {
       headerClassName: "text-right pr-6",
       searchable: false,
     },
+  ]
+
+  const formSelectOptions = [
+    { value: "admin", label: "Administrador" },
+    { value: "analyst", label: "Analista" },
+    { value: "operator", label: "Operador" },
   ]
 
   return (
@@ -457,6 +482,79 @@ export function ComponentsPage() {
 
         <div className="divider-horizontal" />
 
+        {/* Form Classes */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Form Classes (shadcn + palette)</h2>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <Card variant="base" className="space-y-4">
+              <h3 className="text-lg font-medium">Inputs</h3>
+              <div className="form-field">
+                <Label className="label-base">Nombre</Label>
+                <Input className="input-base" placeholder="Nombre completo" />
+              </div>
+              <div className="form-field">
+                <Label className="label-base">Correo</Label>
+                <Input className="input-base" type="email" placeholder="correo@bene-access.com" />
+              </div>
+            </Card>
+
+            <Card variant="base" className="space-y-4">
+              <h3 className="text-lg font-medium">Select</h3>
+              <div className="form-field">
+                <Label className="label-base">Rol</Label>
+             
+
+                    <Select>
+                    <SelectTrigger className="w-full max-w-48">
+                        <SelectValue placeholder="Select a fruit" />
+                    </SelectTrigger>
+                    <SelectContent>
+                        <SelectGroup>
+                        <SelectLabel>Fruits</SelectLabel>
+                        <SelectItem value="apple">Apple</SelectItem>
+                        <SelectItem value="banana">Banana</SelectItem>
+                        <SelectItem value="blueberry">Blueberry</SelectItem>
+                        <SelectItem value="grapes">Grapes</SelectItem>
+                        <SelectItem value="pineapple">Pineapple</SelectItem>
+                        </SelectGroup>
+                    </SelectContent>
+                    </Select>
+                
+
+
+              </div>
+            </Card>
+
+
+            
+
+            <Card variant="base" className="space-y-4 lg:col-span-2">
+              <h3 className="text-lg font-medium">Textarea</h3>
+              <div className="form-field">
+                <Label className="label-base">Notas</Label>
+                <Textarea className="textarea-base" placeholder="Describe una observacion o comentario..." />
+              </div>
+            </Card>
+          </div>
+        </section>
+
+        <div className="divider-horizontal" />
+
+        {/* Complete Form + Modal */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Complete Form + Modal</h2>
+          <p className="text-sm text-muted mb-4">
+            El boton para abrir modal y guardar usa estilo primary. El cierre usa danger rojo.
+          </p>
+
+          <div className="flex items-center gap-3">
+            <FormModalExample />
+          </div>
+        </section>
+
+        <div className="divider-horizontal" />
+
         {/* Alerts */}
         <section>
           <h2 className="text-2xl font-semibold mb-4">Alerts</h2>
@@ -545,6 +643,7 @@ export function ComponentsPage() {
               <div className="space-y-2">
                 <p className="text-primary">Primary text color</p>
                 <p className="text-secondary">Secondary text color</p>
+                <p className="text-base-color">Base text color (#364153)</p>
                 <p className="text-success">Success text color</p>
                 <p className="text-warning">Warning text color</p>
                 <p className="text-danger">Danger text color</p>

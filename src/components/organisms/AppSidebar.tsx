@@ -129,6 +129,7 @@ export function AppSidebar() {
   const renderNode = (item: CatalogItem, level = 1, path = item.title): React.ReactNode => {
     const Icon = item.icon ?? BookOpen
     const iconClassName = "h-5 w-5"
+    const menuInteractiveTextClass = "hover:text-white active:text-white data-[active=true]:text-white data-[open=true]:hover:text-white"
     const hasChildren = Boolean(item.items?.length) && level < 3
     const isOpen = hasChildren && expandedPaths.has(path)
     const isExactActive = item.href ? pathname === item.href : false
@@ -141,6 +142,7 @@ export function AppSidebar() {
             <SidebarMenuButton
               render={<NavLink to={item.href} />}
               isActive={isExactActive}
+              className={menuInteractiveTextClass}
             >
               <Icon className={iconClassName} />
               <span>{item.title}</span>
@@ -149,6 +151,7 @@ export function AppSidebar() {
             <SidebarMenuButton
               isActive={isExactActive || isAncestorActive}
               onClick={() => togglePath(path)}
+              className={menuInteractiveTextClass}
             >
               <Icon className={iconClassName} />
               <span>{item.title}</span>
@@ -177,6 +180,7 @@ export function AppSidebar() {
           <SidebarMenuSubButton
             render={<NavLink to={item.href} />}
             isActive={isExactActive}
+            className={menuInteractiveTextClass}
           >
             <Icon className={iconClassName} />
             <span>{item.title}</span>
@@ -185,6 +189,7 @@ export function AppSidebar() {
           <SidebarMenuSubButton
             render={<button type="button" onClick={hasChildren ? () => togglePath(path) : undefined} />}
             isActive={isExactActive}
+            className={menuInteractiveTextClass}
           >
             <Icon className={iconClassName} />
             <span>{item.title}</span>
