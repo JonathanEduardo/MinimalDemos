@@ -34,7 +34,7 @@ Color secundario del sistema, usado para acciones secundarias y alertas.
 
 Para Success, Warning y Danger, usamos los colores de Tailwind directamente:
 
-- **Success (Verde)**: `green-500`, `green-600`, etc.  
+- **Success (Verde)**: `green-700`, `green-700`, etc.  
   Usado para: aprobaciones, éxitos, confirmaciones
   
 - **Warning (Amarillo)**: `yellow-500`, `amber-500`, etc.  
@@ -139,7 +139,7 @@ import { Card, StatCard } from "@/components/atoms"
 ```css
 .btn-primary     /* Botón primario azul - usa variables custom */
 .btn-secondary   /* Botón secundario amarillo - usa variables custom */
-.btn-success     /* Botón verde - usa green-500 de Tailwind */
+.btn-success     /* Botón verde - usa green-700 de Tailwind */
 .btn-warning     /* Botón amarillo - usa yellow-500 de Tailwind */
 .btn-danger      /* Botón rojo - usa red-500 de Tailwind */
 .btn-ghost       /* Botón transparente */
@@ -226,7 +226,7 @@ import { Card, StatCard } from "@/components/atoms"
 .text-muted          /* Texto gris */
 .text-primary        /* Texto azul - usa variable custom */
 .text-secondary      /* Texto amarillo - usa variable custom */
-.text-success        /* Texto verde - green-500 */
+.text-success        /* Texto verde - green-700 */
 .text-warning        /* Texto amarillo - yellow-500 */
 .text-danger         /* Texto rojo - red-500 */
 ```
@@ -326,7 +326,7 @@ import { StatCard } from "@/components/atoms"
 
 ### 4. **Usar variables CSS solo para Primary y Secondary**
    - ❌ Crear variables para colores que ya existen en Tailwind
-   - ✅ Usar `green-500`, `red-500`, `yellow-500` directamente
+   - ✅ Usar `green-700`, `red-500`, `yellow-500` directamente
    - ✅ Variables custom solo para `--primary-*` y `--secondary-*`
    - ✅✅ Mejor aún: usar clases @apply que ya incluyan el color
 

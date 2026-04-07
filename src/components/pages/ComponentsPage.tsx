@@ -267,9 +267,9 @@ export function ComponentsPage() {
               <p className="text-sm text-muted mb-3">Usamos los colores de Tailwind directamente</p>
               <div className="grid grid-cols-3 gap-4">
                 <div className="space-y-2">
-                  <div className="h-20 rounded-md bg-green-500" />
+                  <div className="h-20 rounded-md bg-green-700" />
                   <p className="text-xs text-center font-semibold">Success</p>
-                  <p className="text-xs text-center text-muted font-mono">green-500</p>
+                  <p className="text-xs text-center text-muted font-mono">green-700</p>
                 </div>
                 <div className="space-y-2">
                   <div className="h-20 rounded-md bg-yellow-500" />
@@ -442,7 +442,7 @@ export function ComponentsPage() {
                   variant="success"
                   label="Aprobados"
                   value="8"
-                  icon={<Check className="h-8 w-8 text-green-600" />}
+                  icon={<Check className="h-8 w-8 text-green-700" />}
                 />
                 <StatCard
                   variant="warning"

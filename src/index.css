@@ -52,7 +52,7 @@ html {
 
   /* ========================================
      NOTA: Success, Warning, Danger usan colores de Tailwind
-     - success: green-500, green-600, etc.
+     - success: green-700, green-700, etc.
      - warning: yellow-500, amber-500, etc.
      - danger: red-500, red-600, etc.
      ======================================== */
@@ -184,9 +184,9 @@ html {
 
 .btn-success {
   @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
-  @apply bg-green-500 text-white;
-  @apply hover:bg-green-600;
-  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
+  @apply bg-green-700 text-white;
+  @apply hover:bg-green-700;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-700 focus-visible:ring-offset-2;
   @apply disabled:pointer-events-none disabled:opacity-50;
   @apply transition-colors duration-200;
 }
@@ -693,7 +693,7 @@ html {
 }
 
 .text-success {
-  @apply text-green-500;
+  @apply text-green-700;
 }
 
 .text-warning {
