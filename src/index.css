@@ -10,27 +10,19 @@ html {
 }
 
 :root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: oklch(0.922 0 0);
-  --code-bg: #f4f3ec;
-  --accent: oklch(0.97 0 0);
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
+  /* ========================================
+     🎨 BENE ACCESS DESIGN SYSTEM SIMPLIFICADO
+     ======================================== */
+  
+  /* Fonts */
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
   --mono: ui-monospace, Consolas, monospace;
 
-  font: 18px/145% var(--sans);
+  /* Base Settings */
+  font: 16px/145% var(--sans);
   letter-spacing: 0.18px;
   color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
   height: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -38,88 +30,399 @@ html {
   -moz-osx-font-smoothing: grayscale;
 
   @media (max-width: 1024px) {
-    font-size: 16px;
+    font-size: 14px;
   }
 
-  --background: oklch(1 0 0);
+  /* ========================================
+     CUSTOM COLORS (Solo Primary y Secondary)
+     ======================================== */
+  
+  /* PRIMARY - Azul del Dashboard/Sidebar (#4267B2) */
+  --primary-light: 90 130 210;      /* Tono más claro */
+  --primary-base: 66 103 178;       /* Base #4267B2 */
+  --primary-dark: 51 80 148;        /* Tono más oscuro */
 
-  --foreground: oklch(0.145 0 0);
+  /* SECONDARY - Amarillo/Mostaza (#F0AD4E) */
+  --secondary-light: 251 196 123;   /* Tono más claro */
+  --secondary-base: 240 173 78;     /* Base #F0AD4E */
+  --secondary-dark: 217 145 53;     /* Tono más oscuro */
 
-  --card: oklch(1 0 0);
+  /* ========================================
+     NOTA: Success, Warning, Danger usan colores de Tailwind
+     - success: green-500, green-600, etc.
+     - warning: yellow-500, amber-500, etc.
+     - danger: red-500, red-600, etc.
+     ======================================== */
 
-  --card-foreground: oklch(0.145 0 0);
+  /* ========================================
+     SHADCN UI TOKENS (Light Mode)
+     ======================================== */
+  --background: 0 0% 100%;
+  --foreground: 0 0% 9%;
 
-  --popover: oklch(1 0 0);
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 9%;
 
-  --popover-foreground: oklch(0.145 0 0);
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 9%;
 
-  --primary: oklch(0.205 0 0);
+  --primary: 217 62% 48%;
+  --primary-foreground: 0 0% 98%;
 
-  --primary-foreground: oklch(0.985 0 0);
+  --secondary: 38 92% 50%;
+  --secondary-foreground: 0 0% 9%;
 
-  --secondary: oklch(0.97 0 0);
+  --muted: 0 0% 96%;
+  --muted-foreground: 0 0% 45%;
 
-  --secondary-foreground: oklch(0.205 0 0);
+  --accent: 0 0% 96%;
+  --accent-foreground: 0 0% 9%;
 
-  --muted: oklch(0.97 0 0);
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 98%;
 
-  --muted-foreground: oklch(0.556 0 0);
+  --border: 0 0% 90%;
+  --input: 0 0% 90%;
+  --ring: 217 62% 48%;
 
-  --accent-foreground: oklch(0.205 0 0);
+  --radius: 0.5rem;
 
-  --destructive: oklch(0.577 0.245 27.325);
+  /* Chart colors */
+  --chart-1: 217 62% 48%;
+  --chart-2: 142 71% 45%;
+  --chart-3: 38 92% 50%;
+  --chart-4: 0 72% 51%;
+  --chart-5: 0 0% 45%;
 
-  --input: oklch(0.922 0 0);
-
-  --ring: oklch(0.708 0 0);
-
-  --chart-1: oklch(0.87 0 0);
-
-  --chart-2: oklch(0.556 0 0);
-
-  --chart-3: oklch(0.439 0 0);
-
-  --chart-4: oklch(0.371 0 0);
-
-  --chart-5: oklch(0.269 0 0);
-
-  --radius: 0.625rem;
-
-  --sidebar: oklch(0.985 0 0);
-
-  --sidebar-foreground: oklch(0.145 0 0);
-
-  --sidebar-primary: oklch(0.205 0 0);
-
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-
-  --sidebar-accent: oklch(0.97 0 0);
-
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-
-  --sidebar-border: oklch(0.922 0 0);
-
-  --sidebar-ring: oklch(0.708 0 0)
+  /* ========================================
+     SIDEBAR TOKENS
+     ======================================== */
+  --sidebar: 217 62% 48%;
+  --sidebar-foreground: 0 0% 100%;
+  --sidebar-primary: 217 62% 38%;
+  --sidebar-primary-foreground: 0 0% 100%;
+  --sidebar-accent: 217 62% 42%;
+  --sidebar-accent-foreground: 0 0% 100%;
+  --sidebar-border: 217 62% 38%;
+  --sidebar-ring: 217 62% 38%;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+/* ========================================
+   DARK MODE
+   ======================================== */
+.dark {
+  /* Neutral colors remain the same */
+  
+  /* ShadCN UI Tokens - Dark Mode */
+  --background: 0 0% 9%;
+  --foreground: 0 0% 98%;
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
+  --card: 0 0% 12%;
+  --card-foreground: 0 0% 98%;
+
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 98%;
+
+  --primary: 217 62% 58%;       /* Lighter blue for dark mode */
+  --primary-foreground: 0 0% 9%;
+
+  --secondary: 0 0% 15%;
+  --secondary-foreground: 0 0% 98%;
+
+  --muted: 0 0% 15%;
+  --muted-foreground: 0 0% 65%;
+
+  --accent: 0 0% 15%;
+  --accent-foreground: 0 0% 98%;
+
+  --destructive: 0 62% 60%;
+  --destructive-foreground: 0 0% 98%;
+
+  --border: 0 0% 20%;
+  --input: 0 0% 20%;
+  --ring: 217 62% 58%;
+
+  /* Sidebar - Dark Mode */
+  --sidebar: 0 0% 12%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-primary: 217 62% 48%;
+  --sidebar-primary-foreground: 0 0% 98%;
+  --sidebar-accent: 0 0% 18%;
+  --sidebar-accent-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 20%;
+  --sidebar-ring: 217 62% 58%;
+}
+
+/* ========================================
+   UTILITY CLASSES (@apply)
+   Usar variables custom solo para primary/secondary
+   Usar Tailwind directo para success/warning/danger
+   ======================================== */
+
+@layer components {
+/* ---- BUTTONS ---- */
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply bg-[rgb(var(--primary-base))] text-white;
+  @apply hover:bg-[rgb(var(--primary-dark))];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary-base))] focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-secondary {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply bg-[rgb(var(--secondary-base))] text-white;
+  @apply hover:bg-[rgb(var(--secondary-dark))];
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))] focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-success {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply bg-green-500 text-white;
+  @apply hover:bg-green-600;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-warning {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply bg-yellow-500 text-white;
+  @apply hover:bg-yellow-600;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-yellow-500 focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-danger {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply bg-red-500 text-white;
+  @apply hover:bg-red-600;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply hover:bg-gray-100;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-outline {
+  @apply inline-flex items-center justify-center gap-2 rounded-md px-4 py-2 text-sm font-medium;
+  @apply border border-gray-300 bg-transparent;
+  @apply hover:bg-gray-100;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gray-400 focus-visible:ring-offset-2;
+  @apply disabled:pointer-events-none disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.btn-sm {
+  @apply px-3 py-1.5 text-xs;
+}
+
+.btn-lg {
+  @apply px-6 py-3 text-base;
+}
+
+/* ---- BADGES ---- */
+.badge-primary {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-blue-100 text-blue-700 border border-blue-200;
+}
+
+.badge-secondary {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-yellow-100 text-yellow-700 border border-yellow-200;
+}
+
+.badge-success {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-green-100 text-green-700 border border-green-200;
+}
+
+.badge-warning {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-yellow-100 text-yellow-700 border border-yellow-200;
+}
+
+.badge-danger {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-red-100 text-red-700 border border-red-200;
+}
+
+.badge-neutral {
+  @apply inline-flex items-center justify-center gap-1 rounded-md px-2.5 py-1 text-xs font-medium;
+  @apply bg-gray-100 text-gray-700 border border-gray-200;
+}
+
+/* ---- CARDS ---- */
+.card-base {
+  @apply rounded-lg border border-gray-200 bg-white shadow-sm p-6 text-gray-900;
+}
+
+.card-stat {
+  @apply rounded-lg border border-gray-200 bg-white shadow-sm p-6 flex flex-col gap-2;
+}
+
+.card-stat-value {
+  @apply text-4xl font-bold text-current;
+}
+
+.card-stat-label {
+  @apply text-sm font-medium text-current opacity-80;
+}
+
+.card-primary {
+  @apply rounded-lg border border-blue-300 bg-blue-100 shadow-sm p-6 text-blue-950;
+}
+
+.card-secondary {
+  @apply rounded-lg border border-amber-300 bg-amber-100 shadow-sm p-6 text-amber-950;
+}
+
+.card-success {
+  @apply rounded-lg border border-emerald-300 bg-emerald-100 shadow-sm p-6 text-emerald-950;
+}
+
+.card-warning {
+  @apply rounded-lg border border-yellow-300 bg-yellow-100 shadow-sm p-6 text-yellow-950;
+}
+
+.card-danger {
+  @apply rounded-lg border border-rose-300 bg-rose-100 shadow-sm p-6 text-rose-950;
+}
+
+/* ---- INPUTS ---- */
+.input-base {
+  @apply flex h-10 w-full rounded-md border border-gray-300;
+  @apply bg-white px-3 py-2 text-sm ring-offset-white;
+  @apply placeholder:text-gray-400;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary-base))] focus-visible:ring-offset-2;
+  @apply disabled:cursor-not-allowed disabled:opacity-50;
+  @apply transition-colors duration-200;
+}
+
+.label-base {
+  @apply text-sm font-medium text-gray-700 mb-2 block;
+}
+
+/* ---- ALERTS ---- */
+.alert-base {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3;
+}
+
+.alert-primary {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3 border-blue-200 bg-blue-50 text-blue-700;
+}
+
+.alert-secondary {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3 border-yellow-200 bg-yellow-50 text-yellow-700;
+}
+
+.alert-success {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3 border-green-200 bg-green-50 text-green-700;
+}
+
+.alert-warning {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3 border-yellow-200 bg-yellow-50 text-yellow-700;
+}
+
+.alert-danger {
+  @apply relative w-full rounded-lg border p-4 flex items-start gap-3 border-red-200 bg-red-50 text-red-700;
+}
+
+/* ---- TABLE ---- */
+.table-wrapper {
+  @apply w-full overflow-auto rounded-lg border border-gray-200;
+}
+
+.table-base {
+  @apply w-full caption-bottom text-sm;
+}
+
+.table-header {
+  @apply border-b border-gray-200 bg-gray-50;
+}
+
+.table-header-cell {
+  @apply h-12 px-4 text-left align-middle font-medium text-gray-600;
+}
+
+.table-body-row {
+  @apply border-b border-gray-200 transition-colors hover:bg-gray-50;
+}
+
+.table-body-cell {
+  @apply p-4 align-middle;
+}
+
+/* ---- SIDEBAR (Applied to AppSidebar) ---- */
+.sidebar-container {
+  @apply bg-[rgb(var(--primary-base))] text-white;
+}
+
+.sidebar-menu-item {
+  @apply flex items-center gap-3 rounded-md px-3 py-2 text-sm;
+  @apply hover:bg-[rgb(var(--primary-dark))] transition-colors duration-200;
+}
+
+.sidebar-menu-item-active {
+  @apply flex items-center gap-3 rounded-md px-3 py-2 text-sm transition-colors duration-200;
+  @apply bg-[rgb(var(--primary-dark))] font-medium;
+}
+
+/* ---- NAVBAR (Applied to AppHeaderbar) ---- */
+.navbar-container {
+  @apply flex h-16 items-center justify-between gap-4 border-b border-gray-200 bg-white px-6;
+}
+
+.navbar-brand {
+  @apply flex items-center gap-2 text-lg font-semibold text-gray-900;
+}
+
+.navbar-actions {
+  @apply flex items-center gap-2;
+}
+
+/* ---- UTILITY ---- */
+.divider-horizontal {
+  @apply h-px w-full bg-gray-200;
+}
+
+.divider-vertical {
+  @apply h-full w-px bg-gray-200;
+}
+
+.text-muted {
+  @apply text-gray-500;
+}
+
+.text-primary {
+  @apply text-[rgb(var(--primary-base))];
+}
+
+.text-secondary {
+  @apply text-[rgb(var(--secondary-base))];
+}
+
+.text-success {
+  @apply text-green-500;
+}
+
+.text-warning {
+  @apply text-yellow-500;
+}
+
+.text-danger {
+  @apply text-red-500;
+}
 }
 
 #root {
