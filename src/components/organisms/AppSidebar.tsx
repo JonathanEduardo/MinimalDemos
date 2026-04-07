@@ -1,15 +1,11 @@
 import * as React from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import {
-  BookOpen,
   ChevronRight,
-  Ellipsis,
-  KeyRound,
-  Map,
-  Plane,
+  LayoutDashboard,
+  QrCode,
   Settings2,
   ShieldCheck,
-  Users,
   type LucideIcon,
 } from "lucide-react"
 import {
@@ -42,47 +38,13 @@ type CatalogItem = {
 // ── Datos de menú ──────────────────────────────────────────────────────────────
 
 const menuPrincipal: CatalogItem[] = [
-  { title: "Algo",        icon: Plane,     href: "/viajes" },
-  { title: "Configuración", icon: Settings2, href: "/configuracion" },
-  {
-    title: "Más",
-    icon: Ellipsis,
-    items: [
-      { title: "Almacenamiento", icon: BookOpen },
-      { title: "Planes",         icon: BookOpen },
-      {
-        title: "Etiquetas",
-        icon: BookOpen,
-        items: [
-          { title: "Etiquetas de viaje",   icon: BookOpen },
-          { title: "Etiquetas de usuario", icon: BookOpen },
-        ],
-      },
-    ],
-  },
+  { title: "Dashboard",     icon: LayoutDashboard, href: "/" },
+  { title: "Permisos",      icon: ShieldCheck,     href: "/admin" },
+  { title: "QR Check",      icon: QrCode,          href: "/guardia" },
+  { title: "Configuración", icon: Settings2,       href: "/settings" },
 ]
 
-const catalogos: CatalogItem[] = [
-  { title: "Usuarios",    icon: Users,       href: "/catalogs/users" },
-  { title: "Permisos", icon: Map,         href: "/catalogs/airports" },
-  { title: "Proveedores", icon: Plane,       href: "/catalogs/providers" },
-  {
-    title: "Accesos",
-    icon: Ellipsis,
-    items: [
-      { title: "Roles",    icon: ShieldCheck, href: "/catalogs/roles" },
-      { title: "Permisos", icon: KeyRound,    href: "/catalogs/permissions" },
-      {
-        title: "Más",
-        icon: BookOpen,
-        items: [
-          { title: "Etiquetas de viaje",   icon: BookOpen },
-          { title: "Etiquetas de usuario", icon: BookOpen },
-        ],
-      },
-    ],
-  },
-]
+const catalogos: CatalogItem[] = []
 
 // ── Componente ────────────────────────────────────────────────────────────────
 
@@ -240,16 +202,18 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
 
-        <SidebarGroup>
-          <SidebarGroupLabel>Catálogos</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {catalogos.map((item) =>
-                renderNode(item, 1, `catalogos/${item.title}`)
-              )}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+        {catalogos.length > 0 && (
+          <SidebarGroup>
+            <SidebarGroupLabel>Catálogos</SidebarGroupLabel>
+            <SidebarGroupContent>
+              <SidebarMenu>
+                {catalogos.map((item) =>
+                  renderNode(item, 1, `catalogos/${item.title}`)
+                )}
+              </SidebarMenu>
+            </SidebarGroupContent>
+          </SidebarGroup>
+        )}
       </SidebarContent>
     </Sidebar>
   )

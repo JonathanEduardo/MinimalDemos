@@ -1,22 +1,24 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { ComponentsPage } from '@/components/pages'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { VisitasProvider } from '@/store/visitas'
+import { DashboardPage, AdminPage, GuardiaPage, ComponentsPage } from '@/components/pages'
 import './App.css'
 
 function App() {
   return (
     <BrowserRouter>
-      
-      <Routes>
-        <Route path="/components" element={<ComponentsPage />} />
- 
-  
-
-   
-
-   
-      </Routes>
+      <VisitasProvider>
+        <Routes>
+          <Route path="/" element={<DashboardPage />} />
+          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/guardia" element={<GuardiaPage />} />
+          <Route path="/components" element={<ComponentsPage />} />
+          <Route path="/settings" element={<Navigate to="/" replace />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+      </VisitasProvider>
     </BrowserRouter>
   )
 }
 
 export default App
+
