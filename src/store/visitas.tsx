@@ -13,6 +13,7 @@ export interface Visita {
   folio: string
   empresa: string
   representante: string
+  telefono: string
   personas: string[]
   contactoPreferido: ContactoPreferido
   personaVisitar: string
@@ -41,6 +42,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-A1B2C3",
     empresa: "TechCorp SA de CV",
     representante: "Carlos Mendoza",
+    telefono: "5512345678",
     personas: ["Carlos Mendoza", "Laura Torres"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Ing. Roberto Díaz",
@@ -56,6 +58,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-D4E5F6",
     empresa: "Grupo Innovar",
     representante: "María García",
+    telefono: "5598765432",
     personas: ["María García"],
     contactoPreferido: "sms",
     personaVisitar: "Lic. Patricia Ruiz",
@@ -71,6 +74,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-G7H8I9",
     empresa: "Consultores del Norte",
     representante: "Alejandro Vega",
+    telefono: "5511223344",
     personas: ["Alejandro Vega", "Fernanda López", "Jorge Soto"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Dr. Samuel Castro",
@@ -86,6 +90,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-J0K1L2",
     empresa: "Servicios Globales SRL",
     representante: "Diana Flores",
+    telefono: "5544556677",
     personas: ["Diana Flores", "Raúl Martínez"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Ing. Carmen Navarro",
@@ -101,6 +106,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-M3N4O5",
     empresa: "DataSystems México",
     representante: "Eduardo Herrera",
+    telefono: "5533445566",
     personas: ["Eduardo Herrera"],
     contactoPreferido: "sms",
     personaVisitar: "Arq. Lucía Medina",
@@ -116,6 +122,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-P6Q7R8",
     empresa: "Nexus Logística",
     representante: "Sofía Ramírez",
+    telefono: "5566778899",
     personas: ["Sofía Ramírez", "Tomás Ortega"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Lic. Pablo Guerrero",
@@ -131,6 +138,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-S9T0U1",
     empresa: "Arquitectura Avanzada",
     representante: "Roberto Silva",
+    telefono: "5577889900",
     personas: ["Roberto Silva"],
     contactoPreferido: "sms",
     personaVisitar: "Ing. Mónica Vargas",
@@ -146,6 +154,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-V2W3X4",
     empresa: "Legal & Partners",
     representante: "Claudia Jiménez",
+    telefono: "5588990011",
     personas: ["Claudia Jiménez", "Antonio Reyes"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Dr. Ernesto Blanco",
@@ -161,6 +170,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-Y5Z6A7",
     empresa: "Manufactura Integral",
     representante: "Luis Castillo",
+    telefono: "5599001122",
     personas: ["Luis Castillo", "Verónica Lagos", "Hugo Peralta"],
     contactoPreferido: "sms",
     personaVisitar: "Lic. Andrea Fuentes",
@@ -176,6 +186,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-B8C9D0",
     empresa: "FinanzasPro",
     representante: "Isabel Morales",
+    telefono: "5500112233",
     personas: ["Isabel Morales"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Lic. Gustavo Peña",
@@ -191,6 +202,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-E1F2G3",
     empresa: "BioTech Innovations",
     representante: "García Torres",
+    telefono: "5511334455",
     personas: ["García Torres", "Natalia Cruz"],
     contactoPreferido: "sms",
     personaVisitar: "Dr. Felipe Sandoval",
@@ -206,6 +218,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-H4I5J6",
     empresa: "Constructora Omega",
     representante: "Miguel Ángel Rivas",
+    telefono: "5522445566",
     personas: ["Miguel Ángel Rivas", "Daniela Soto"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Arq. Rosa Torres",
@@ -221,6 +234,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-K7L8M9",
     empresa: "Agro Exportaciones",
     representante: "Carmen Estrada",
+    telefono: "5533556677",
     personas: ["Carmen Estrada"],
     contactoPreferido: "sms",
     personaVisitar: "Ing. Arturo Domínguez",
@@ -236,6 +250,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-N0O1P2",
     empresa: "CloudSoft Solutions",
     representante: "Andrés Guzmán",
+    telefono: "5544667788",
     personas: ["Andrés Guzmán", "Patricia Sánchez", "Oscar Villanueva"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Lic. Beatriz Olvera",
@@ -251,6 +266,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-Q3R4S5",
     empresa: "Seguridad Total SA",
     representante: "Ricardo Nava",
+    telefono: "5555778899",
     personas: ["Ricardo Nava", "Elena Barrera"],
     contactoPreferido: "sms",
     personaVisitar: "Lic. Humberto Díaz",
@@ -266,6 +282,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-T6U7V8",
     empresa: "Innovaciones Verdes",
     representante: "Silvia Mora",
+    telefono: "5566889900",
     personas: ["Silvia Mora", "Alejandro Cruz", "Vanessa Torres"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Dr. Francisco Leal",
@@ -281,6 +298,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-W9X0Y1",
     empresa: "Pharma Distribuidora",
     representante: "Jorge Montes",
+    telefono: "5577990011",
     personas: ["Jorge Montes"],
     contactoPreferido: "sms",
     personaVisitar: "Lic. Lorena Vargas",
@@ -296,6 +314,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-Z2A3B4",
     empresa: "Telecom Express",
     representante: "Héctor Paredes",
+    telefono: "5588001122",
     personas: ["Héctor Paredes", "Laura Quintero"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Ing. Catalina Vela",
@@ -335,6 +354,7 @@ interface VisitasContextValue {
   rechazarVisita: (folio: string, comentario: string) => void
   reagendarVisita: (folio: string, nuevaFecha: string, comentario: string) => void
   buscarVisitaPorFolio: (folio: string) => Visita | undefined
+  buscarVisitaPorFolioOTelefono: (query: string) => Visita | undefined
   obtenerKPIs: () => KPIs
   obtenerTendencia: () => TendenciaDia[]
 }
@@ -425,6 +445,18 @@ export function VisitasProvider({ children }: { children: React.ReactNode }) {
     }
   }, [visitas])
 
+  const buscarVisitaPorFolioOTelefono = React.useCallback(
+    (query: string): Visita | undefined => {
+      const q = query.trim().toLowerCase()
+      return visitas.find(
+        (v) =>
+          v.folio.toLowerCase() === q ||
+          v.telefono.replace(/\D/g, "") === q.replace(/\D/g, "")
+      )
+    },
+    [visitas]
+  )
+
   const obtenerTendencia = React.useCallback((): TendenciaDia[] => {
     const dias = [
       "2026-04-01",
@@ -455,6 +487,7 @@ export function VisitasProvider({ children }: { children: React.ReactNode }) {
         rechazarVisita,
         reagendarVisita,
         buscarVisitaPorFolio,
+        buscarVisitaPorFolioOTelefono,
         obtenerKPIs,
         obtenerTendencia,
       }}

@@ -390,6 +390,7 @@ function ModalNuevaVisita({
 
   const [empresa, setEmpresa] = React.useState("")
   const [representante, setRepresentante] = React.useState("")
+  const [telefono, setTelefono] = React.useState("")
   const [personas, setPersonas] = React.useState<string[]>([""])
   const [contactoPreferido, setContactoPreferido] = React.useState<"whatsapp" | "sms">("whatsapp")
   const [personaVisitar, setPersonaVisitar] = React.useState("")
@@ -402,6 +403,7 @@ function ModalNuevaVisita({
   const resetForm = () => {
     setEmpresa("")
     setRepresentante("")
+    setTelefono("")
     setPersonas([""])
     setContactoPreferido("whatsapp")
     setPersonaVisitar("")
@@ -431,6 +433,7 @@ function ModalNuevaVisita({
     const errs: string[] = []
     if (!empresa.trim()) errs.push("El nombre de la empresa es requerido.")
     if (!representante.trim()) errs.push("El representante es requerido.")
+    if (telefono.replace(/\D/g, "").length < 10 && telefono.trim()) errs.push("El teléfono debe tener 10 dígitos.")
     if (!personaVisitar.trim()) errs.push("La persona a visitar es requerida.")
     if (!fecha.trim()) errs.push("La fecha es requerida.")
     if (!hora.trim()) errs.push("La hora es requerida.")
@@ -445,6 +448,7 @@ function ModalNuevaVisita({
     const nueva = crearVisita({
       empresa: empresa.trim(),
       representante: representante.trim(),
+      telefono: telefono.trim(),
       personas: personasFilled,
       contactoPreferido,
       personaVisitar: personaVisitar.trim(),
@@ -570,6 +574,18 @@ function ModalNuevaVisita({
                   placeholder="Nombre del representante"
                   value={representante}
                   onChange={(e) => setRepresentante(e.target.value)}
+                />
+              </div>
+
+              <div className="form-field">
+                <Label className="label-base">Teléfono de contacto</Label>
+                <Input
+                  type="tel"
+                  className="input-base"
+                  placeholder="10 dígitos"
+                  value={telefono}
+                  maxLength={15}
+                  onChange={(e) => setTelefono(e.target.value)}
                 />
               </div>
 

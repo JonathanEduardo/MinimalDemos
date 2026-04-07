@@ -451,7 +451,7 @@ html {
 }
 
 .datatable-search-input {
-  @apply h-11 rounded-xl border-gray-200 bg-white pl-10 text-sm;
+  @apply h-11 rounded-xl border-gray-200 bg-white pl-24 text-sm;
   @apply text-[rgb(var(--primary-dark))] placeholder:text-gray-500;
   @apply focus-visible:ring-[rgb(var(--primary-base))];
 }

@@ -9,11 +9,13 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, UserCircle2 } from "lucide-react"
+import { Bell, UserCircle2, LayoutDashboard, ClipboardList } from "lucide-react"
+import { useNavigate } from "react-router-dom"
 
 export function AppHeaderbar() {
   const displayName = "Usuario"
   const userEmail = "usuario@ejemplo.com"
+  const navigate = useNavigate()
 
   return (
     <header className="flex h-14 shrink-0 items-center justify-between gap-2  bg-background px-4">
@@ -39,6 +41,15 @@ export function AppHeaderbar() {
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <DropdownMenuItem>Perfil</DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem
+                className="cursor-pointer"
+                onClick={() => navigate("/provider/access")}
+              >
+                <LayoutDashboard className="mr-2 h-3.5 w-3.5" />
+                Formulario proveedores
+              </DropdownMenuItem>
+        
               <DropdownMenuSeparator />
               <DropdownMenuItem className="text-destructive focus:text-destructive cursor-pointer">
                 Cerrar sesión
