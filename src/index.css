@@ -22,7 +22,7 @@ html {
   /* Base Settings */
   font: 16px/145% var(--sans);
   letter-spacing: 0.18px;
-  color-scheme: light dark;
+  color-scheme: light;
   height: 100%;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -264,7 +264,7 @@ html {
 
 /* ---- CARDS ---- */
 .card-base {
-  @apply rounded-lg border border-gray-200 bg-white shadow-sm p-6 text-gray-900;
+  @apply rounded-lg border border-gray-200 bg-white shadow-sm p-6;
 }
 
 .card-stat {
@@ -272,31 +272,31 @@ html {
 }
 
 .card-stat-value {
-  @apply text-4xl font-bold text-current;
+  @apply text-4xl font-bold;
 }
 
 .card-stat-label {
-  @apply text-sm font-medium text-current opacity-80;
+  @apply text-sm font-medium text-gray-600;
 }
 
 .card-primary {
-  @apply rounded-lg border border-blue-300 bg-blue-100 shadow-sm p-6 text-blue-950;
+  @apply rounded-lg border border-blue-200 bg-blue-50 shadow-sm p-6;
 }
 
 .card-secondary {
-  @apply rounded-lg border border-amber-300 bg-amber-100 shadow-sm p-6 text-amber-950;
+  @apply rounded-lg border border-yellow-200 bg-yellow-50 shadow-sm p-6;
 }
 
 .card-success {
-  @apply rounded-lg border border-emerald-300 bg-emerald-100 shadow-sm p-6 text-emerald-950;
+  @apply rounded-lg border border-green-200 bg-green-50 shadow-sm p-6;
 }
 
 .card-warning {
-  @apply rounded-lg border border-yellow-300 bg-yellow-100 shadow-sm p-6 text-yellow-950;
+  @apply rounded-lg border border-yellow-200 bg-yellow-50 shadow-sm p-6;
 }
 
 .card-danger {
-  @apply rounded-lg border border-rose-300 bg-rose-100 shadow-sm p-6 text-rose-950;
+  @apply rounded-lg border border-red-200 bg-red-50 shadow-sm p-6;
 }
 
 /* ---- INPUTS ---- */
@@ -363,7 +363,176 @@ html {
   @apply p-4 align-middle;
 }
 
+/* ---- DATA TABLE ---- */
+.datatable-root {
+  @apply space-y-5;
+}
+
+.datatable-toolbar {
+  @apply rounded-2xl border border-gray-200 bg-gray-50/80 p-3 md:p-4;
+}
+
+.datatable-toolbar-grid {
+  @apply grid gap-3 md:grid-cols-[minmax(0,1fr)_180px_220px_48px];
+}
+
+.datatable-search-wrap {
+  @apply relative;
+}
+
+.datatable-search-icon {
+  @apply pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400;
+}
+
+.datatable-search-input {
+  @apply h-11 rounded-xl border-gray-200 bg-white pl-10 text-sm;
+  @apply focus-visible:ring-[rgb(var(--primary-base))];
+}
+
+.datatable-toolbar-btn {
+  @apply h-11 rounded-xl border-gray-200 bg-white text-muted;
+}
+
+.datatable-card {
+  @apply overflow-hidden rounded-3xl border border-gray-200 bg-white shadow-sm;
+}
+
+.datatable-head-cell {
+  @apply h-14 px-6 text-[0.72rem] font-semibold uppercase tracking-[0.12em] text-gray-400;
+}
+
+.datatable-row {
+  @apply h-18 border-gray-100;
+}
+
+.datatable-cell {
+  @apply px-6 py-5 align-middle text-sm text-gray-700;
+}
+
+.datatable-empty {
+  @apply h-32 text-center text-muted;
+}
+
+.datatable-footer {
+  @apply flex flex-col gap-3 rounded-2xl border border-gray-200 bg-white px-4 py-3;
+  @apply sm:flex-row sm:items-center sm:justify-between;
+}
+
+.datatable-footer-count {
+  @apply text-xs font-semibold uppercase tracking-[0.12em] text-gray-400;
+}
+
+.datatable-pagination {
+  @apply flex items-center gap-1.5;
+}
+
+.datatable-pagination-icon {
+  @apply h-8 w-8 rounded-lg border-gray-200 p-0;
+}
+
+.datatable-pagination-page {
+  @apply h-8 min-w-8 rounded-lg px-2;
+}
+
+.datatable-pagination-page-active {
+  @apply bg-[rgb(var(--primary-base))] text-white hover:bg-[rgb(var(--primary-dark))];
+}
+
+.datatable-pagination-page-inactive {
+  @apply border border-transparent bg-transparent text-gray-600 hover:bg-gray-100;
+}
+
+.datatable-provider-name {
+  @apply font-semibold text-[rgb(var(--primary-dark))];
+}
+
+.datatable-provider-role {
+  @apply text-xs uppercase tracking-wide text-gray-400;
+}
+
+.datatable-requester-avatar {
+  @apply flex h-8 w-8 items-center justify-center rounded-full bg-gray-100 text-xs font-semibold text-gray-600;
+}
+
+.datatable-requester-name {
+  @apply font-medium text-gray-900;
+}
+
+.datatable-date {
+  @apply font-medium text-gray-900;
+}
+
+.datatable-time {
+  @apply text-xs text-gray-500;
+}
+
+.datatable-access-chip {
+  @apply rounded-md bg-gray-100 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-gray-600;
+}
+
+.datatable-action-muted {
+  @apply text-xs font-semibold uppercase tracking-wide italic text-gray-400;
+}
+
+.datatable-action-btn {
+  @apply border border-[rgb(var(--primary-light))] bg-white text-[rgb(var(--primary-dark))] hover:bg-[rgb(var(--primary-light))]/20;
+}
+
 /* ---- SIDEBAR (Applied to AppSidebar) ---- */
+
+/* Escala visual del sidebar cuando esta expandido */
+[data-state=expanded] [data-sidebar=menu-button] {
+  min-height: 2.6rem !important;
+  font-size: 0.98rem !important;
+}
+
+[data-state=expanded] [data-sidebar=menu-button] svg {
+  width: 1.2rem !important;
+  height: 1.2rem !important;
+}
+
+[data-state=expanded] [data-sidebar=menu-sub-button] {
+  min-height: 2.2rem !important;
+  font-size: 0.92rem !important;
+}
+
+[data-state=expanded] [data-sidebar=menu-sub-button] svg {
+  width: 1.05rem !important;
+  height: 1.05rem !important;
+}
+
+[data-state=expanded] [data-sidebar=group-label] {
+  font-size: 0.85rem !important;
+}
+
+@media (min-width: 1024px) {
+  [data-state=expanded] [data-sidebar=menu-button] {
+    font-size: 1rem !important;
+  }
+
+  [data-state=expanded] [data-sidebar=menu-sub-button] {
+    font-size: 0.95rem !important;
+  }
+}
+
+/* Botón más grande cuando el sidebar está colapsado */
+[data-collapsible=icon] [data-sidebar=menu-button] {
+  width: 3rem !important;
+  height: 3rem !important;
+  justify-content: center !important;
+}
+
+[data-collapsible=icon] [data-sidebar=menu-button] svg {
+  width: 1.4rem !important;
+  height: 1.4rem !important;
+}
+
+[data-collapsible=icon] [data-sidebar=menu-button] > span,
+[data-collapsible=icon] [data-sidebar=group-label],
+[data-collapsible=icon] [data-sidebar=menu-button] .ml-auto {
+  display: none !important;
+}
+
 .sidebar-container {
   @apply bg-[rgb(var(--primary-base))] text-white;
 }

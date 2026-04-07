@@ -2,23 +2,19 @@ import * as React from "react"
 import { NavLink, useLocation } from "react-router-dom"
 import {
   BookOpen,
-  ChevronDown,
   ChevronRight,
-  ChevronUp,
   Ellipsis,
   KeyRound,
   Map,
   Plane,
   Settings2,
   ShieldCheck,
-  UserCircle2,
   Users,
   type LucideIcon,
 } from "lucide-react"
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
@@ -30,15 +26,9 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+import logoFull from "@/assets/logos/logo_full.png"
+import logoSm from "@/assets/logos/logo_sm.png"
+
 
 // ── Tipos ─────────────────────────────────────────────────────────────────────
 
@@ -138,6 +128,7 @@ export function AppSidebar() {
 
   const renderNode = (item: CatalogItem, level = 1, path = item.title): React.ReactNode => {
     const Icon = item.icon ?? BookOpen
+    const iconClassName = "h-5 w-5"
     const hasChildren = Boolean(item.items?.length) && level < 3
     const isOpen = hasChildren && expandedPaths.has(path)
     const isExactActive = item.href ? pathname === item.href : false
@@ -151,7 +142,7 @@ export function AppSidebar() {
               render={<NavLink to={item.href} />}
               isActive={isExactActive}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className={iconClassName} />
               <span>{item.title}</span>
             </SidebarMenuButton>
           ) : (
@@ -159,7 +150,7 @@ export function AppSidebar() {
               isActive={isExactActive || isAncestorActive}
               onClick={() => togglePath(path)}
             >
-              <Icon className="h-4 w-4" />
+              <Icon className={iconClassName} />
               <span>{item.title}</span>
               {hasChildren && (
                 <ChevronRight
@@ -187,7 +178,7 @@ export function AppSidebar() {
             render={<NavLink to={item.href} />}
             isActive={isExactActive}
           >
-            <Icon className="h-4 w-4" />
+            <Icon className={iconClassName} />
             <span>{item.title}</span>
           </SidebarMenuSubButton>
         ) : (
@@ -195,7 +186,7 @@ export function AppSidebar() {
             render={<button type="button" onClick={hasChildren ? () => togglePath(path) : undefined} />}
             isActive={isExactActive}
           >
-            <Icon className="h-4 w-4" />
+            <Icon className={iconClassName} />
             <span>{item.title}</span>
             {hasChildren && (
               <ChevronRight
@@ -217,23 +208,20 @@ export function AppSidebar() {
   }
 
   return (
-    <Sidebar>
-      <SidebarHeader className="my-5">
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex w-full items-center justify-start gap-2 rounded-md px-2 py-2 text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                <UserCircle2 className="h-4 w-4" />
-                <span>Bene Access</span>
-                <ChevronDown className="ml-auto h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuItem>Enterprise</DropdownMenuItem>
-                <DropdownMenuItem>Beneficencia</DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
+    <Sidebar collapsible="icon">
+      <SidebarHeader className="my-5 group-data-[collapsible=icon]:my-2 group-data-[collapsible=icon]:py-1">
+        <div className="flex items-center justify-center px-2">
+          <img
+            src={logoFull}
+            alt="Bene Access"
+            className="h-10 w-auto object-contain group-data-[collapsible=icon]:hidden"
+          />
+          <img
+            src={logoSm}
+            alt="Bene Access"
+            className="hidden h-10 w-10 object-contain group-data-[collapsible=icon]:block"
+          />
+        </div>
       </SidebarHeader>
 
       <SidebarContent>
@@ -258,35 +246,6 @@ export function AppSidebar() {
           </SidebarGroupContent>
         </SidebarGroup>
       </SidebarContent>
-
-      <SidebarFooter>
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex w-full items-center justify-start gap-2 rounded-md px-2 py-2 text-sm hover:bg-sidebar-accent hover:text-sidebar-accent-foreground">
-                <UserCircle2 className="h-4 w-4" />
-                <span>Usuario</span>
-                <ChevronUp className="ml-auto h-4 w-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent side="top" className="w-[--radix-popper-anchor-width]">
-                <DropdownMenuGroup>
-                  <DropdownMenuLabel>
-                    <p className="text-sm font-medium">Usuario</p>
-                    <p className="text-xs text-muted-foreground font-normal">usuario@ejemplo.com</p>
-                  </DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem>Perfil</DropdownMenuItem>
-                  <DropdownMenuItem>Facturación</DropdownMenuItem>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuItem className="text-destructive focus:text-destructive cursor-pointer">
-                    Cerrar sesión
-                  </DropdownMenuItem>
-                </DropdownMenuGroup>
-              </DropdownMenuContent>
-            </DropdownMenu>
-          </SidebarMenuItem>
-        </SidebarMenu>
-      </SidebarFooter>
     </Sidebar>
   )
 }

@@ -1,5 +1,6 @@
 import { AppLayout } from "@/components/templates"
 import { Button, Badge, Alert, Card, StatCard } from "@/components/atoms"
+import { DataTable, type DataTableColumn } from "@/components/ui/data-table"
 import { Calendar, Check, X, AlertTriangle } from "lucide-react"
 
 /* ========================================
@@ -8,6 +9,149 @@ import { Calendar, Check, X, AlertTriangle } from "lucide-react"
    ======================================== */
 
 export function ComponentsPage() {
+  type TableStatus = "APPROVED" | "PENDING" | "REJECTED"
+
+  interface TableDemoRow {
+    provider: string
+    providerRole: string
+    requester: string
+    requesterInitials: string
+    estado: TableStatus
+    accessLevel: string
+    date: string
+    time: string
+    action: string
+  }
+
+  const tableData: TableDemoRow[] = [
+    {
+      provider: "iNTEL Softwares",
+      providerRole: "External auditor",
+      requester: "Julian Vance",
+      requesterInitials: "JV",
+      estado: "PENDING",
+      accessLevel: "N/A",
+      date: "Oct 24, 2023",
+      time: "14:22 PM",
+      action: "System actioned",
+    },
+    {
+      provider: "SafeGuard Hub",
+      providerRole: "Security provider",
+      requester: "Sarah Jenkins",
+      requesterInitials: "SJ",
+      estado: "APPROVED",
+      accessLevel: "Read only",
+      date: "Oct 23, 2023",
+      time: "09:15 AM",
+      action: "System actioned",
+    },
+    {
+      provider: "DataStream API",
+      providerRole: "Integration",
+      requester: "Marcus Knight",
+      requesterInitials: "MK",
+      estado: "REJECTED",
+      accessLevel: "Write access",
+      date: "Oct 22, 2023",
+      time: "11:40 AM",
+      action: "Re-evaluate",
+    },
+    {
+      provider: "CloudBox",
+      providerRole: "Storage",
+      requester: "Andrea Lopez",
+      requesterInitials: "AL",
+      estado: "APPROVED",
+      accessLevel: "Read only",
+      date: "Oct 21, 2023",
+      time: "10:05 AM",
+      action: "System actioned",
+    },
+  ]
+
+  const tableColumns: DataTableColumn<TableDemoRow>[] = [
+    {
+      header: "Provider",
+      accessorKey: "provider",
+      cell: (row) => (
+        <div>
+          <p className="datatable-provider-name">{row.provider}</p>
+          <p className="datatable-provider-role">{row.providerRole}</p>
+        </div>
+      ),
+      searchable: true,
+    },
+    {
+      header: "Requesting person",
+      accessorKey: "requester",
+      cell: (row) => (
+        <div className="flex items-center gap-3">
+          <div className="datatable-requester-avatar">
+            {row.requesterInitials}
+          </div>
+          <p className="datatable-requester-name">{row.requester}</p>
+        </div>
+      ),
+      searchable: true,
+    },
+    {
+      header: "Date/Time",
+      accessorKey: "date",
+      cell: (row) => (
+        <div>
+          <p className="datatable-date">{row.date}</p>
+          <p className="datatable-time">{row.time}</p>
+        </div>
+      ),
+      searchable: false,
+    },
+    {
+      header: "Access level",
+      accessorKey: "accessLevel",
+      cell: (row) => (
+        <span className="datatable-access-chip">
+          {row.accessLevel}
+        </span>
+      ),
+      searchable: false,
+    },
+    {
+      header: "Status",
+      accessorKey: "estado",
+      cell: (row) => {
+        const variant =
+          row.estado === "APPROVED"
+            ? "success"
+            : row.estado === "PENDING"
+              ? "warning"
+              : "danger"
+
+        return <Badge variant={variant} className="px-3 py-1 text-[11px] tracking-wide">{row.estado}</Badge>
+      },
+      searchable: false,
+    },
+    {
+      header: "Actions",
+      accessorKey: "action",
+      cell: (row) =>
+        row.action === "Re-evaluate" ? (
+          <Button
+            variant="outline"
+            size="sm"
+            className="datatable-action-btn uppercase tracking-wide"
+          >
+            {row.action}
+          </Button>
+        ) : (
+          <span className="datatable-action-muted">{row.action}</span>
+        ),
+      className: "text-right",
+      headerClassName: "text-right pr-6",
+      searchable: false,
+    },
+  ]
+
   return (
     <AppLayout>
       <div className="space-y-8">
@@ -290,6 +434,25 @@ export function ComponentsPage() {
               </div>
             </div>
           </div>
+        </section>
+
+        <div className="divider-horizontal" />
+
+        {/* Tables */}
+        <section>
+          <h2 className="text-2xl font-semibold mb-4">Tables</h2>
+          <p className="text-sm text-muted mb-4">
+            Tabla para catalogo visual con busqueda y paginacion simulada en frontend.
+          </p>
+
+          <DataTable
+            columns={tableColumns}
+            data={tableData}
+            filterPlaceholder="Search by provider or requester..."
+            pageSize={3}
+            statusLabel="All Status"
+            dateRangeLabel="Oct 12 - Oct 19, 2023"
+          />
         </section>
 
         <div className="divider-horizontal" />

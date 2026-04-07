@@ -8,12 +8,14 @@ interface AppLayoutProps {
 
 export function AppLayout({ children }: AppLayoutProps) {
   return (
-    <SidebarProvider>
+    <SidebarProvider style={{ "--sidebar-width-icon": "4rem" } as React.CSSProperties}>
       <AppSidebar />
       <SidebarInset className="flex flex-col min-h-screen">
         <AppHeaderbar />
         <main className="flex-1 p-6 overflow-auto">
-          {children}
+          <div className="mx-auto w-full max-w-7xl">
+            {children}
+          </div>
         </main>
       </SidebarInset>
     </SidebarProvider>
