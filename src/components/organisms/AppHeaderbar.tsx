@@ -9,7 +9,7 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { Bell, UserCircle2, LayoutDashboard, ClipboardList } from "lucide-react"
+import { Bell, UserCircle2, LayoutDashboard } from "lucide-react"
 import { useNavigate } from "react-router-dom"
 
 export function AppHeaderbar() {

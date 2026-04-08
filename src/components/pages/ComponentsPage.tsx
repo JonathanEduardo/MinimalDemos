@@ -171,12 +171,6 @@ export function ComponentsPage() {
     },
   ]
 
-  const formSelectOptions = [
-    { value: "admin", label: "Administrador" },
-    { value: "analyst", label: "Analista" },
-    { value: "operator", label: "Operador" },
-  ]
-
   return (
     <AppLayout>
       <div className="space-y-8">

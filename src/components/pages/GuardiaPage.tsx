@@ -4,8 +4,6 @@ import {
   Search,
   CheckCircle2,
   Users,
-  Building2,
-  CalendarClock,
   MessageCircle,
   Phone,
   Clock,
