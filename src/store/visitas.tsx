@@ -42,7 +42,7 @@ const MOCK_VISITAS: Visita[] = [
     folio: "FOL-A1B2C3",
     empresa: "TechCorp SA de CV",
     representante: "Carlos Mendoza",
-    telefono: "5512345678",
+    telefono: "5598765432",
     personas: ["Carlos Mendoza", "Laura Torres"],
     contactoPreferido: "whatsapp",
     personaVisitar: "Ing. Roberto Díaz",
@@ -59,7 +59,7 @@ const MOCK_VISITAS: Visita[] = [
     empresa: "Grupo Innovar",
     representante: "María García",
     telefono: "5598765432",
-    personas: ["María García"],
+    personas: ["María García", "Pedro Rodríguez"],
     contactoPreferido: "sms",
     personaVisitar: "Lic. Patricia Ruiz",
     fechaHora: "2026-04-07 11:30",
@@ -645,6 +645,7 @@ interface VisitasContextValue {
   reagendarVisita: (folio: string, nuevaFecha: string, comentario: string) => void
   buscarVisitaPorFolio: (folio: string) => Visita | undefined
   buscarVisitaPorFolioOTelefono: (query: string) => Visita | undefined
+  buscarVisitasMultiple: (query: string) => Visita[]
   obtenerKPIs: () => KPIs
   obtenerTendencia: () => TendenciaDia[]
   obtenerDiasPorMes: (año: number, mes: number) => DiaConteo[]
@@ -749,6 +750,25 @@ export function VisitasProvider({ children }: { children: React.ReactNode }) {
     [visitas]
   )
 
+  const buscarVisitasMultiple = React.useCallback(
+    (query: string): Visita[] => {
+      const q = query.trim().toLowerCase()
+      if (!q) return []
+      const soloDigitos = q.replace(/\D/g, "")
+      // Búsqueda por teléfono (≥8 dígitos)
+      if (soloDigitos.length >= 8) {
+        return visitas.filter((v) => v.telefono.replace(/\D/g, "").includes(soloDigitos))
+      }
+      // Búsqueda por nombre: representante o personas a visitar
+      return visitas.filter(
+        (v) =>
+          v.representante.toLowerCase().includes(q) ||
+          (v.personas ?? []).some((p) => p.toLowerCase().includes(q))
+      )
+    },
+    [visitas]
+  )
+
   const obtenerTendencia = React.useCallback((): TendenciaDia[] => {
     const dias = [
       "2026-04-01",
@@ -830,6 +850,7 @@ export function VisitasProvider({ children }: { children: React.ReactNode }) {
         reagendarVisita,
         buscarVisitaPorFolio,
         buscarVisitaPorFolioOTelefono,
+        buscarVisitasMultiple,
         obtenerKPIs,
         obtenerTendencia,
         obtenerDiasPorMes,

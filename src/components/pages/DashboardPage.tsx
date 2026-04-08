@@ -25,7 +25,7 @@ const MESES = [
 // Semanas domingo→sábado, colores únicos por día de semana
 const DIA_CORTOS  = ["Dom","Lun","Mar","Mié","Jue","Vie","Sáb"]
 const DIA_NOMBRES = ["Domingo","Lunes","Martes","Miércoles","Jueves","Viernes","Sábado"]
-const DIA_COLORS  = ["#9ca3af","#ef4444","#4f46e5","#10b981","#0d9488","#3b82f6","#f59e0b"]
+const DIA_COLORS  = ["#D1D5DB","#FCA5A5","#93C5FD","#86EFAC","#C4B5FD","#67E8F9","#FDE68A"]
 
 // Agrupa días del mes en semanas Dom-Sáb, comenzando en el primer día del mes
 function agruparEnSemanasCalendario(dias: DiaConteo[]) {
@@ -69,11 +69,12 @@ function MiniSemChart({
   topTick:  number
   ticks:    number[]
 }) {
-  const presentDias = dias.map((d, dow) => ({ dia: d, dow })).filter(x => x.dia !== null)
+  const allDias = dias.map((d, dow) => ({ dia: d, dow }))
 
   return (
     <div className="flex-1 min-w-[110px]">
-      <p className="text-sm font-semibold text-[rgb(var(--primary-dark))] mb-2">{label}</p>
+      <p className="text-sm font-semibold text-[rgb(var(--primary-dark))] my-2">{label}</p>
+      <br />
       <div className="flex gap-1">
         {/* Y-axis */}
         <div className="relative shrink-0" style={{ width: 16, height: CHART_H }}>
@@ -99,27 +100,31 @@ function MiniSemChart({
               />
             ))}
             <div className="absolute inset-0 flex items-end gap-1">
-              {presentDias.map(({ dia, dow }) => {
-                const barH = dia!.total > 0
-                  ? Math.max((dia!.total / topTick) * CHART_H * 0.9, 4)
-                  : 0
+              {allDias.map(({ dia, dow }) => {
+                const isOutOfMonth = dia === null
+                const total = dia?.total ?? 0
+                const barH = total > 0
+                  ? Math.max((total / topTick) * CHART_H * 0.9, 4)
+                  : isOutOfMonth ? 0 : 2
                 return (
                   <div
                     key={dow}
                     className="flex-1 flex flex-col items-center justify-end h-full"
-                    title={`${DIA_NOMBRES[dow]}: ${dia!.total} visita${dia!.total !== 1 ? "s" : ""}`}
+                    title={isOutOfMonth ? DIA_CORTOS[dow] : `${DIA_NOMBRES[dow]}: ${total} visita${total !== 1 ? "s" : ""}`}
                   >
-                    {dia!.total > 0 && (
+                    {total > 0 && (
                       <span className="text-[9px] font-semibold mb-0.5" style={{ color: DIA_COLORS[dow] }}>
-                        {dia!.total}
+                        {total}
                       </span>
                     )}
-                    {barH > 0 && (
-                      <div
-                        className="w-full rounded-t-md transition-all duration-500"
-                        style={{ height: barH, backgroundColor: DIA_COLORS[dow] }}
-                      />
-                    )}
+                    <div
+                      className="w-full rounded-t-md transition-all duration-500"
+                      style={{
+                        height: barH || 2,
+                        backgroundColor: isOutOfMonth ? "#f0f4f8" : total > 0 ? DIA_COLORS[dow] : "#e5e7eb",
+                        opacity: isOutOfMonth ? 0.4 : 1,
+                      }}
+                    />
                   </div>
                 )
               })}
@@ -127,7 +132,7 @@ function MiniSemChart({
           </div>
           {/* Day labels */}
           <div className="flex gap-1 mt-1">
-            {presentDias.map(({ dow }) => (
+            {allDias.map(({ dow }) => (
               <div key={dow} className="flex-1 text-center">
                 <span className="text-[9px] text-muted-foreground">{DIA_CORTOS[dow]}</span>
               </div>
@@ -186,13 +191,20 @@ export function DashboardPage() {
   const yTicks  = React.useMemo(() => calcYTicks(maxDiaGlobal), [maxDiaGlobal])
   const topTick = yTicks[yTicks.length - 1] || 1
 
-  const recientes = React.useMemo(
-    () =>
-      [...visitas]
-        .sort((a, b) => new Date(b.fechaActualizacion).getTime() - new Date(a.fechaActualizacion).getTime())
-        .slice(0, 6),
-    [visitas]
-  )
+  const [busqueda,   setBusqueda]   = React.useState("")
+  const [filtroEstado, setFiltroEstado] = React.useState<string>("todos")
+
+  const recientes = React.useMemo(() => {
+    const q = busqueda.trim().toLowerCase()
+    return [...visitas]
+      .sort((a, b) => new Date(b.fechaActualizacion).getTime() - new Date(a.fechaActualizacion).getTime())
+      .filter((v) => {
+        const matchQ = !q || v.empresa.toLowerCase().includes(q) || v.representante.toLowerCase().includes(q)
+        const matchE = filtroEstado === "todos" || v.estado === filtroEstado
+        return matchQ && matchE
+      })
+      .slice(0, 20)
+  }, [visitas, busqueda, filtroEstado])
 
   return (
     <AppLayout>
@@ -218,7 +230,7 @@ export function DashboardPage() {
             <div className="flex items-start justify-between gap-2 flex-wrap">
               <div>
                 <p className="font-semibold text-[rgb(var(--primary-dark))]">Visitas por Semana</p>
-                <p className="text-xs text-muted-foreground mt-0.5">
+                <p className="text-xs text-muted-foreground mt-0.5 ">
                   {MESES[mesSem]} {añoSem} — {semanas.length} semana{semanas.length !== 1 ? "s" : ""}
                 </p>
               </div>
@@ -351,9 +363,36 @@ export function DashboardPage() {
 
         {/* ── Actividad Reciente ────────────────────── */}
         <div className="card-base">
-          <div className="flex items-center justify-between mb-4">
+          <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
             <p className="font-semibold text-[rgb(var(--primary-dark))]">Actividad Reciente</p>
-            <span className="text-xs text-muted-foreground">Últimas {recientes.length} actualizaciones</span>
+            <div className="flex items-center gap-2 flex-wrap">
+              {/* Búsqueda empresa / representante */}
+              <div className="relative">
+                <svg className="absolute left-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+                  <circle cx={11} cy={11} r={8}/><path d="m21 21-4.35-4.35"/>
+                </svg>
+                <input
+                  type="text"
+                  placeholder="Empresa o representante…"
+                  value={busqueda}
+                  onChange={(e) => setBusqueda(e.target.value)}
+                  className="pl-7 pr-3 py-1 text-xs border border-gray-200 rounded-md bg-white text-[rgb(var(--base-color))] placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-[rgb(var(--primary-base))] w-52"
+                />
+              </div>
+              {/* Filtro de estado */}
+              <select
+                value={filtroEstado}
+                onChange={(e) => setFiltroEstado(e.target.value)}
+                className="text-xs border border-gray-200 rounded-md px-2 py-1 bg-white text-[rgb(var(--base-color))] focus:outline-none focus:ring-1 focus:ring-[rgb(var(--primary-base))] cursor-pointer"
+              >
+                <option value="todos">Todos los estados</option>
+                <option value="aprobado">Aprobado</option>
+                <option value="pendiente">Pendiente</option>
+                <option value="rechazado">Rechazado</option>
+                <option value="reagendado">Reagendado</option>
+              </select>
+              <span className="text-xs text-muted-foreground whitespace-nowrap">{recientes.length} resultado{recientes.length !== 1 ? "s" : ""}</span>
+            </div>
           </div>
           <div className="table-wrapper">
             <table className="table-base">
@@ -367,7 +406,13 @@ export function DashboardPage() {
                 </tr>
               </thead>
               <tbody>
-                {recientes.map((v) => {
+                {recientes.length === 0 ? (
+                  <tr>
+                    <td colSpan={5} className="text-center py-8 text-sm text-muted-foreground">
+                      Sin resultados para los filtros aplicados
+                    </td>
+                  </tr>
+                ) : recientes.map((v) => {
                   const { fecha, hora } = formatFecha(v.fechaHora)
                   return (
                     <tr key={v.id} className="table-body-row">

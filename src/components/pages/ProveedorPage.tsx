@@ -31,6 +31,8 @@ import {
   SelectValue,
 } from "@/components/ui/select"
 import { useVisitas, type Visita, type ContactoPreferido } from "@/store/visitas"
+import { QRCodeSVG } from "qrcode.react"
+import logoSm from "@/assets/logos/logo_sm.png"
 import logoFull from "@/assets/logos/logo_full.png"
 
 /* ========================================
@@ -62,10 +64,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
     <div className="space-y-10">
       {/* Hero */}
       <div className="text-center space-y-3 max-w-xl mx-auto pt-2">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--primary-base))] bg-[rgb(var(--primary-base))] px-4 py-1.5 text-xs font-semibold text-white uppercase tracking-wider">
-          <ShieldCheck className="h-3.5 w-3.5 text-[rgb(var(--secondary-base))]" />
-          Portal de Acceso Institucional
-        </div>
+        
         <h2 className="text-2xl font-semibold text-[rgb(var(--primary-dark))] leading-snug">
           Bienvenido, ¿qué deseas hacer hoy?
         </h2>
@@ -76,29 +75,54 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
       </div>
 
       {/* Tarjetas de acción */}
-      <div className="grid gap-5 sm:grid-cols-2 max-w-2xl mx-auto">
-        <button
-          type="button"
-          onClick={() => onSelect("crear")}
-          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--terciary-base))]  bg-white p-6  border-gray-200 hover:scale-105 transition-transform duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
+      <div className="  flex flex-col gap-4 h-auto  max-w-2xl mx-auto">
+        <div
+          
+         
+          className="w-2/3 mx-auto group text-left rounded-2xl border  bg-white p-6  border-gray-200 transition-transform duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
         >
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors bg-[rgba(var(--terciary-base),0.08)] group-hover:bg-[rgba(var(--terciary-base),0.15)]">
-            <ClipboardList className="h-6 w-6 text-[rgb(var(--terciary-base))]" />
+
+          <div className="flex flex-row gap-6 ">
+            <div>  
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors bg-[rgba(var(--terciary-base),0.08)] ">
+              <ClipboardList className="h-6 w-6 text-[rgb(var(--terciary-base))]" />
+            </div>
           </div>
-          <p className="font-semibold text-[rgb(var(--terciary-dark))] text-base mb-1.5">
-            Registrar Visita
-          </p>
-          <p className="text-sm text-muted-foreground leading-relaxed">
+            <div>
+            <p className="font-semibold text-[rgb(var(--primary-dark))] text-base mb-1.5">
+              Registrar Visita
+            </p>
+          <p className="text-sm text-muted-foreground leading-relaxed text-justify">
             Solicita un permiso de acceso para tu empresa. Recibirás un folio único y
             código QR directamente en tu teléfono.
           </p>
-          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold w-fit text-white px-2.5 py-1.5 float-right rounded-md bg-[rgb(var(--primary-base))]">
-            Comenzar registro
-            <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
-          </div>
-        </button>
+            </div>
 
-        <button
+          </div>
+        
+         
+            <div className="flex justify-center">
+              <button
+                type="button"
+                 onClick={() => onSelect("crear")}
+                className="cursor-pointer hover:scale-105 transition-transform duration-200 mt-4 flex items-center gap-1.5 text-sm font-semibold w-fit text-white px-2.5 py-1.5 rounded-md bg-[rgb(var(--primary-base))]"
+              >
+                Registrar visita
+                <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
+              </button>
+            </div>
+
+          <hr className="my-4" />
+
+          <p className="text-sm baseline text-muted-foreground leading-relaxed text-center">
+            ¿Ya tienes un folio? <span  onClick={() => onSelect("consultar")} className="cursor-pointer hover:underline text-[rgb(var(--secondary-dark))] font-bold"> Consulta estado.</span>
+          </p>
+
+
+
+        </div>
+
+      {/*  <button
           type="button"
           onClick={() => onSelect("consultar")}
           className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--secondary-base))]  bg-white p-6  border-gray-200 hover:scale-105 transition-transform duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))]"
@@ -117,7 +141,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
             Ver estado
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </div>
-        </button>
+        </button>. */}
       </div>
 
       {/* Instrucciones del proceso */}
@@ -242,11 +266,27 @@ function IADocumentChecker({
 // ── Formulario de creación ────────────────────────────────────────────────────
 
 function FormularioCrear({ onBack }: { onBack: () => void }) {
-  const { crearVisita } = useVisitas()
+  const { crearVisita, buscarVisitaPorFolioOTelefono } = useVisitas()
 
+  const [telefono, setTelefono] = React.useState("")
   const [empresa, setEmpresa] = React.useState("")
   const [representante, setRepresentante] = React.useState("")
-  const [telefono, setTelefono] = React.useState("")
+  const [autoFilled, setAutoFilled] = React.useState(false)
+
+  // Auto-fill empresa/representante from existing visita when phone = 10 digits
+  React.useEffect(() => {
+    const digits = telefono.replace(/\D/g, "")
+    if (digits.length === 10) {
+      const found = buscarVisitaPorFolioOTelefono(digits)
+      if (found) {
+        setEmpresa(found.empresa)
+        setRepresentante(found.representante)
+        setAutoFilled(true)
+        return
+      }
+    }
+    setAutoFilled(false)
+  }, [telefono, buscarVisitaPorFolioOTelefono])
   const [personas, setPersonas] = React.useState<string[]>([""])
   const [contactoPreferido, setContactoPreferido] = React.useState<ContactoPreferido>("whatsapp")
   const [personaVisitar, setPersonaVisitar] = React.useState("")
@@ -349,28 +389,23 @@ function FormularioCrear({ onBack }: { onBack: () => void }) {
             </span>
           </div>
 
-          {/* QR simulado */}
+          {/* QR real escaneable */}
           <div className="flex flex-col items-center gap-3 py-4 border-t border-b border-gray-100">
-            <div
-              className="flex h-36 w-36 items-center justify-center rounded-xl border-2 border-dashed border-[rgb(var(--primary-base))/0.35] bg-[rgb(var(--primary-light))/0.04]"
-              aria-label="Código QR simulado"
-            >
-              <div className="grid grid-cols-6 gap-[2px] p-1">
-                {Array.from({ length: 36 }).map((_, i) => (
-                  <div
-                    key={i}
-                    className="h-4 w-4 rounded-[1px]"
-                    style={{
-                      backgroundColor:
-                        [0, 1, 5, 6, 7, 11, 12, 17, 18, 23, 24, 29, 30, 35].includes(i) ||
-                        Math.random() > 0.4
-                          ? "rgb(var(--primary-base))"
-                          : "transparent",
-                    }}
-                  />
-                ))}
-              </div>
-            </div>
+            <QRCodeSVG
+              value={`BENE-ACCESS:${success.folio}`}
+              size={144}
+              bgColor="#ffffff"
+              fgColor="rgb(26, 58, 110)"
+              level="M"
+              imageSettings={{
+                src: logoSm,
+                x: undefined,
+                y: undefined,
+                height: 28,
+                width: 28,
+                excavate: true,
+              }}
+            />
             <p className="text-xs text-muted-foreground text-center">
               Presenta este código QR al guardia el día de tu visita
             </p>
@@ -401,7 +436,7 @@ function FormularioCrear({ onBack }: { onBack: () => void }) {
             className="w-full"
             onClick={() => {
               setSuccess(null)
-              setEmpresa(""); setRepresentante(""); setTelefono("")
+              setTelefono(""); setEmpresa(""); setRepresentante(""); setAutoFilled(false)
               setPersonas([""]); setPersonaVisitar(""); setFecha(""); setHora("")
               setDocFileName(null); setDocStatus("idle")
             }}
@@ -419,7 +454,7 @@ function FormularioCrear({ onBack }: { onBack: () => void }) {
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       <div className="flex items-center gap-3">
-        <button type="button" onClick={onBack} className="btn-ghost btn-sm text-muted-foreground">
+        <button type="button" onClick={onBack} className="btn-warning btn-sm ">
           ← Regresar
         </button>
         <div className="h-4 w-px bg-gray-200" />
@@ -445,18 +480,50 @@ function FormularioCrear({ onBack }: { onBack: () => void }) {
             <p className="text-sm font-semibold text-[rgb(var(--primary-dark))]">Datos de la empresa</p>
           </div>
           <div className="form-grid">
+            <div className="form-field col-span-full sm:col-span-1">
+              <Label className="label-base">Teléfono de contacto <span className="text-red-500">*</span></Label>
+              <Input
+                type="tel"
+                className="input-base"
+                placeholder="10 dígitos — para recibir tu QR"
+                value={telefono}
+                maxLength={15}
+                onChange={(e) => setTelefono(e.target.value)}
+                autoFocus
+              />
+              <p className="form-field-hint">
+                {autoFilled
+                  ? "✅ Empresa y representante cargados automáticamente"
+                  : "Con este número podrás consultar tu permiso."}
+              </p>
+            </div>
             <div className="form-field">
               <Label className="label-base">Empresa <span className="text-red-500">*</span></Label>
-              <Input className="input-base" placeholder="Nombre de tu empresa" value={empresa} onChange={(e) => setEmpresa(e.target.value)} />
+              <div className="relative">
+                <Input
+                  className="input-base"
+                  placeholder="Nombre de tu empresa"
+                  value={empresa}
+                  onChange={(e) => { setEmpresa(e.target.value); setAutoFilled(false) }}
+                />
+                {autoFilled && (
+                  <Sparkles className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-green-500 pointer-events-none" />
+                )}
+              </div>
             </div>
             <div className="form-field">
               <Label className="label-base">Representante <span className="text-red-500">*</span></Label>
-              <Input className="input-base" placeholder="Nombre completo del representante" value={representante} onChange={(e) => setRepresentante(e.target.value)} />
-            </div>
-            <div className="form-field">
-              <Label className="label-base">Teléfono de contacto <span className="text-red-500">*</span></Label>
-              <Input type="tel" className="input-base" placeholder="10 dígitos — para recibir tu QR" value={telefono} maxLength={15} onChange={(e) => setTelefono(e.target.value)} />
-              <p className="form-field-hint">Con este número podrás consultar tu permiso.</p>
+              <div className="relative">
+                <Input
+                  className="input-base"
+                  placeholder="Nombre completo del representante"
+                  value={representante}
+                  onChange={(e) => { setRepresentante(e.target.value); setAutoFilled(false) }}
+                />
+                {autoFilled && (
+                  <Sparkles className="absolute right-2 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-green-500 pointer-events-none" />
+                )}
+              </div>
             </div>
             <div className="form-field">
               <Label className="label-base">Medio de contacto</Label>
@@ -610,7 +677,7 @@ function ConsultarPermiso({ onBack }: { onBack: () => void }) {
   return (
     <div className="space-y-6 max-w-lg mx-auto">
       <div className="flex items-center gap-3">
-        <button type="button" onClick={onBack} className="btn-ghost btn-sm text-muted-foreground">
+        <button type="button" onClick={onBack} className="btn-warning btn-sm">
           ← Regresar
         </button>
         <div className="h-4 w-px bg-gray-200" />
@@ -746,6 +813,29 @@ function ConsultarPermiso({ onBack }: { onBack: () => void }) {
               </Alert>
             )}
           </Card>
+
+          {/* QR de consulta */}
+          <div className="flex flex-col items-center gap-3 rounded-xl border border-dashed border-[rgb(var(--primary-base))/0.3] bg-[rgb(var(--primary-light))/0.04] py-5">
+            <QRCodeSVG
+              value={`BENE-ACCESS:${resultado.folio}`}
+              size={140}
+              bgColor="#ffffff"
+              fgColor="rgb(26, 58, 110)"
+              level="M"
+              imageSettings={{
+                src: logoSm,
+                x: undefined,
+                y: undefined,
+                height: 28,
+                width: 28,
+                excavate: true,
+              }}
+            />
+            <p className="text-xs text-muted-foreground text-center">
+              Código QR · <span className="font-mono font-semibold text-[rgb(var(--primary-base))]">{resultado.folio}</span>
+              <br />Preséntalo al guardia el día de tu visita
+            </p>
+          </div>
 
           <button
             type="button"
