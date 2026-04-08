@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { VisitasProvider } from '@/store/visitas'
-import { DashboardPage, AdminPage, GuardiaPage, ComponentsPage, ProveedorPage } from '@/components/pages'
+import {  AdminPage, GuardiaPage, ComponentsPage, ProveedorPage } from '@/components/pages'
 import './App.css'
 
 function App() {
