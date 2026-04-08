@@ -80,7 +80,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <button
           type="button"
           onClick={() => onSelect("crear")}
-          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--terciary-base))]  bg-white p-6 transition-all duration-200 border-gray-200  hover:shadow-[3px_3px_0_rgb(var(--terciary-light))] hover:opacity-70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
+          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--terciary-base))]  bg-white p-6  border-gray-200 hover:scale-105 transition-transform duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
         >
           <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors bg-[rgba(var(--terciary-base),0.08)] group-hover:bg-[rgba(var(--terciary-base),0.15)]">
             <ClipboardList className="h-6 w-6 text-[rgb(var(--terciary-base))]" />
@@ -92,7 +92,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
             Solicita un permiso de acceso para tu empresa. Recibirás un folio único y
             código QR directamente en tu teléfono.
           </p>
-          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[rgb(var(--primary-base))]">
+          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold w-fit text-white px-2.5 py-1.5 float-right rounded-md bg-[rgb(var(--primary-base))]">
             Comenzar registro
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </div>
@@ -101,10 +101,10 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <button
           type="button"
           onClick={() => onSelect("consultar")}
-          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--secondary-base))]  bg-white p-6 transition-all duration-200 border-gray-200  hover:shadow-[3px_3px_0_rgb(var(--secondary-light))]  hover:opacity-70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))]"
+          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--secondary-base))]  bg-white p-6  border-gray-200 hover:scale-105 transition-transform duration-200 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))]"
         >
-  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-colors bg-[rgba(var(--secondary-light))] group-hover:bg-[rgba(var(--secondary-light))]">
-            <Search className="h-6 w-6 text-[rgb(var(--secondary-dark))]" />
+<div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors bg-yellow-50 group-hover:bg-yellow-100">
+                   <Search className="h-6 w-6 text-[rgb(var(--secondary-dark))]" />
           </div>
           <p className="font-semibold text-[rgb(var(--secondary-dark))] text-base mb-1.5">
             Consultar mi Permiso
@@ -113,7 +113,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
             Ingresa tu folio (Ej. FOL-A1B2C3) o número de teléfono para ver
             el estado actual de tu solicitud de acceso.
           </p>
-          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[rgb(var(--primary-base))]">
+          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold w-fit text-white px-2.5 py-1.5 float-right rounded-md bg-[rgb(var(--primary-base))]">
             Ver estado
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </div>
@@ -125,7 +125,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-4 text-center">
           ¿Cómo funciona el proceso?
         </p>
-        <div className="grid gap-3 sm:grid-cols-3">
+        <div className="grid gap-3 sm:grid-cols-3 mt-2">
           {[
             {
               step: "01",
@@ -148,7 +148,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
           ].map(({ step, Icon, title, desc }) => (
             <div
               key={step}
-              className="flex flex-col gap-2 rounded-xl border border-gray-100 bg-gray-50/60 p-4"
+              className="flex flex-col gap-2 rounded-xl border-4 border-dotted border-gray-200 bg-gray-50 p-5 cursor-pointer hover:scale-105 transition-transform duration-200"
             >
               <div className="flex items-center gap-2">
                 <span className="text-[10px] font-bold text-[rgb(var(--primary-base))/0.4]">{step}</span>
@@ -163,7 +163,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
 
       {/* Info notice */}
       <div className="max-w-2xl mx-auto">
-        <Alert variant="primary">
+        <Alert variant="secondary">
           <div>
             <p className="text-sm font-medium">Información importante</p>
             <p className="text-xs mt-1 leading-relaxed">

@@ -41,7 +41,7 @@ const menuPrincipal: CatalogItem[] = [
   { title: "Dashboard",     icon: LayoutDashboard, href: "/" },
   { title: "Permisos",      icon: ShieldCheck,     href: "/admin" },
   { title: "QR Check",      icon: QrCode,          href: "/guardia" },
-  { title: "Configuración", icon: Settings2,       href: "/settings" },
+  { title: "Componentes", icon: Settings2,       href: "/components" },
 ]
 
 const catalogos: CatalogItem[] = []
@@ -102,7 +102,7 @@ export function AppSidebar() {
         <SidebarMenuItem key={path}>
           {item.href && !hasChildren ? (
             <SidebarMenuButton
-              render={<NavLink to={item.href} end />}
+              render={<NavLink to={item.href} end />} 
               isActive={isExactActive}
               className={menuInteractiveTextClass}
             >
@@ -181,7 +181,7 @@ export function AppSidebar() {
           <img
             src={logoFull}
             alt="Bene Access"
-            className="h-10 w-auto object-contain group-data-[collapsible=icon]:hidden"
+            className="h-14 md:h-10 w-auto object-contain group-data-[collapsible=icon]:hidden"
           />
           <img
             src={logoSm}

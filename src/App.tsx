@@ -13,7 +13,7 @@ function App() {
           <Route path="/guardia" element={<GuardiaPage />} />
           <Route path="/provider/access" element={<ProveedorPage />} />
           <Route path="/components" element={<ComponentsPage />} />
-          <Route path="/settings" element={<Navigate to="/" replace />} />
+          <Route path="/settings" element={<ComponentsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </VisitasProvider>
