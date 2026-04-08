@@ -62,8 +62,8 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
     <div className="space-y-10">
       {/* Hero */}
       <div className="text-center space-y-3 max-w-xl mx-auto pt-2">
-        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--primary-light))/0.4] bg-[rgb(var(--primary-light))/0.08] px-4 py-1.5 text-xs font-semibold text-[rgb(var(--primary-base))] uppercase tracking-wider">
-          <ShieldCheck className="h-3.5 w-3.5" />
+        <div className="inline-flex items-center gap-2 rounded-full border border-[rgb(var(--primary-base))] bg-[rgb(var(--primary-base))] px-4 py-1.5 text-xs font-semibold text-white uppercase tracking-wider">
+          <ShieldCheck className="h-3.5 w-3.5 text-[rgb(var(--secondary-base))]" />
           Portal de Acceso Institucional
         </div>
         <h2 className="text-2xl font-semibold text-[rgb(var(--primary-dark))] leading-snug">
@@ -80,12 +80,12 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <button
           type="button"
           onClick={() => onSelect("crear")}
-          className="group text-left rounded-2xl border-2 border-[rgb(var(--primary-base))/0.18] bg-white p-6 shadow-sm transition-all duration-200 hover:border-[rgb(var(--primary-base))] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--primary-base))]"
+          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--terciary-base))]  bg-white p-6 transition-all duration-200 border-gray-200  hover:shadow-[3px_3px_0_rgb(var(--terciary-light))] hover:opacity-70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
         >
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[rgb(var(--primary-base))/0.08] group-hover:bg-[rgb(var(--primary-base))/0.15] transition-colors">
-            <ClipboardList className="h-6 w-6 text-[rgb(var(--primary-base))]" />
+          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl  transition-colors bg-[rgba(var(--terciary-base),0.08)] group-hover:bg-[rgba(var(--terciary-base),0.15)]">
+            <ClipboardList className="h-6 w-6 text-[rgb(var(--terciary-base))]" />
           </div>
-          <p className="font-semibold text-[rgb(var(--primary-dark))] text-base mb-1.5">
+          <p className="font-semibold text-[rgb(var(--terciary-dark))] text-base mb-1.5">
             Registrar Visita
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed">
@@ -101,19 +101,19 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <button
           type="button"
           onClick={() => onSelect("consultar")}
-          className="group text-left rounded-2xl border-2 border-[rgb(var(--secondary-base))/0.25] bg-white p-6 shadow-sm transition-all duration-200 hover:border-[rgb(var(--secondary-base))] hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))]"
+          className="group text-left rounded-2xl border shadow-[3px_3px_0_rgb(var(--secondary-base))]  bg-white p-6 transition-all duration-200 border-gray-200  hover:shadow-[3px_3px_0_rgb(var(--secondary-light))]  hover:opacity-70 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--secondary-base))]"
         >
-          <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[rgb(var(--secondary-base))/0.1] group-hover:bg-[rgb(var(--secondary-base))/0.18] transition-colors">
+  <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl transition-colors bg-[rgba(var(--secondary-light))] group-hover:bg-[rgba(var(--secondary-light))]">
             <Search className="h-6 w-6 text-[rgb(var(--secondary-dark))]" />
           </div>
-          <p className="font-semibold text-[rgb(var(--primary-dark))] text-base mb-1.5">
+          <p className="font-semibold text-[rgb(var(--secondary-dark))] text-base mb-1.5">
             Consultar mi Permiso
           </p>
           <p className="text-sm text-muted-foreground leading-relaxed">
             Ingresa tu folio (Ej. FOL-A1B2C3) o número de teléfono para ver
             el estado actual de tu solicitud de acceso.
           </p>
-          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[rgb(var(--secondary-dark))]">
+          <div className="mt-4 flex items-center gap-1.5 text-xs font-semibold text-[rgb(var(--primary-base))]">
             Ver estado
             <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </div>
@@ -805,7 +805,7 @@ export function ProveedorPage() {
             onClick={() => setMode("idle")}
             className={
               mode === "idle"
-                ? "font-semibold text-[rgb(var(--primary-base))]"
+                ? "font-semibold text-base text-[rgb(var(--primary-base))]"
                 : "hover:underline"
             }
           >

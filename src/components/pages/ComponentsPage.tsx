@@ -261,6 +261,38 @@ export function ComponentsPage() {
               </div>
             </div>
 
+             {/* Tertiary */}
+            <div>
+              <h3 className="text-lg font-medium mb-3">Tertiary (Rojo/España) - #E30613</h3>
+              <p className="text-sm text-muted mb-3">Usado para acciones terciarias y alertas</p>
+              <div className="grid grid-cols-3 gap-4">
+                <div className="space-y-2">
+                  <div
+                    className="h-20 rounded-md border border-gray-300"
+                    style={{ backgroundColor: 'rgb(var(--terciary-light))' }}
+                  />
+                  <p className="text-xs text-center">Light</p>
+                  <p className="text-xs text-center text-muted font-mono">--terciary-light</p>
+                </div>
+                <div className="space-y-2">
+                  <div
+                    className="h-20 rounded-md border border-gray-300"
+                    style={{ backgroundColor: 'rgb(var(--terciary-base))' }}
+                  />
+                  <p className="text-xs text-center font-semibold">Base</p>
+                  <p className="text-xs text-center text-muted font-mono">--terciary-base</p>
+                </div>
+                <div className="space-y-2">
+                  <div
+                    className="h-20 rounded-md border border-gray-300"
+                    style={{ backgroundColor: 'rgb(var(--terciary-dark))' }}
+                  />
+                  <p className="text-xs text-center">Dark</p>
+                  <p className="text-xs text-center text-muted font-mono">--terciary-dark</p>
+                </div>
+              </div>
+            </div>
+
             {/* Tailwind Colors */}
             <div>
               <h3 className="text-lg font-medium mb-3">Estados (Tailwind Colors)</h3>

@@ -37,15 +37,21 @@ html {
      CUSTOM COLORS (Solo Primary y Secondary)
      ======================================== */
   
-  /* PRIMARY - Azul del Dashboard/Sidebar (#4267B2) */
-  --primary-light: 90 130 210;      /* Tono más claro */
-  --primary-base: 66 103 178;       /* Base #4267B2 */
-  --primary-dark: 51 80 148;        /* Tono más oscuro */
+  /* PRIMARY - Azul del Dashboard/Sidebar (#4267B2) */   /* Tono más oscuro */
+
+  --primary-light:66 103 178;      /* Tono más claro */
+  --primary-base: 30 58 120;        /* 103 178;       /* Base #4267B2 */
+  --primary-dark: 14 31 79;         /* 51 80 148;        /* Tono más oscuro */
 
   /* SECONDARY - Amarillo/Mostaza (#F0AD4E) */
-  --secondary-light: 251 196 123;   /* Tono más claro */
-  --secondary-base: 240 173 78;     /* Base #F0AD4E */
-  --secondary-dark: 217 145 53;     /* Tono más oscuro */
+  --secondary-light: 255 231 106;   /* Tono más claro */
+  --secondary-base: 255 210 0;      /* 240 173 78;     /* Base #F0AD4E */
+  --secondary-dark: 199 166 0; 
+
+   /* TERCIARY - Rojo/España (#F0AD4E) */
+  --terciary-light: 245, 108, 94;   /* Tono más claro */
+  --terciary-base: 227, 6, 19;      /* 240 173 78;     /* Base #F0AD4E */
+  --terciary-dark: 163, 0, 13; 
 
   /* BASE - Texto base suave (hex #364153) */
   --base-color: 54 65 83;
