@@ -34,6 +34,7 @@ import { useVisitas, type Visita, type ContactoPreferido } from "@/store/visitas
 import { QRCodeSVG } from "qrcode.react"
 import logoSm from "@/assets/logos/logo_sm.png"
 import logoFull from "@/assets/logos/logo_full.png"
+import { useNavigate } from "react-router-dom"
 
 /* ========================================
    PROVEEDOR PAGE — Vista pública sin sidebar
@@ -854,6 +855,7 @@ function ConsultarPermiso({ onBack }: { onBack: () => void }) {
 
 export function ProveedorPage() {
   const [mode, setMode] = React.useState<Mode>("idle")
+  const navigate = useNavigate()
 
   return (
     <div className="min-h-screen bg-gray-50/50 flex flex-col">
@@ -869,19 +871,13 @@ export function ProveedorPage() {
           </button>
 
           <div className="flex items-center gap-3">
-            <div className="hidden sm:flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-semibold text-green-700">
-              <span className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
-              Portal activo
-            </div>
-            {mode !== "idle" && (
-              <button
-                type="button"
-                onClick={() => setMode("idle")}
-                className="btn-ghost btn-sm text-xs text-muted-foreground"
-              >
-                Inicio
-              </button>
-            )}
+            <button  type="button"
+                onClick={() => navigate("/admin")} 
+                className=" cursor-pointer hidden sm:flex items-center gap-1.5 rounded-full border border-green-200 bg-green-50 px-3 py-1 text-[11px] font-semibold text-green-700">
+              <span  className="inline-block h-1.5 w-1.5 rounded-full bg-green-500" />
+              Dashboar de administración
+            </button>
+          
           </div>
         </div>
       </header>

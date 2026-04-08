@@ -8,7 +8,7 @@ function App() {
     <BrowserRouter>
       <VisitasProvider>
         <Routes>
-          <Route path="/" element={<DashboardPage />} />
+          <Route path="/" element={<ProveedorPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/guardia" element={<GuardiaPage />} />
           <Route path="/provider/access" element={<ProveedorPage />} />
