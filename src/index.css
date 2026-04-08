@@ -105,7 +105,7 @@ html {
   --sidebar-primary: rgb(var(--primary-base));
   --sidebar-primary-foreground: oklch(0.99 0 0);
   --sidebar-accent: color-mix(in oklab, rgb(var(--primary-dark)) 100%, white);
-  --sidebar-accent-foreground: rgb(var(--base-color));
+  --sidebar-accent-foreground: white;
   --sidebar-border: color-mix(in oklab, rgb(var(--primary-dark)) 55%, white);
   --sidebar-ring: rgb(var(--primary-base));
 }
@@ -451,7 +451,7 @@ html {
 }
 
 .datatable-search-input {
-  @apply h-11 rounded-xl border-gray-200 bg-white pl-24 text-sm;
+  @apply h-11 rounded-xl border-gray-200 bg-white text-sm;
   @apply text-[rgb(var(--primary-dark))] placeholder:text-gray-500;
   @apply focus-visible:ring-[rgb(var(--primary-base))];
 }

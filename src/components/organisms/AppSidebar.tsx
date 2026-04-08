@@ -102,7 +102,7 @@ export function AppSidebar() {
         <SidebarMenuItem key={path}>
           {item.href && !hasChildren ? (
             <SidebarMenuButton
-              render={<NavLink to={item.href} />}
+              render={<NavLink to={item.href} end />}
               isActive={isExactActive}
               className={menuInteractiveTextClass}
             >
@@ -140,7 +140,7 @@ export function AppSidebar() {
       <SidebarMenuSubItem key={path}>
         {item.href && !hasChildren ? (
           <SidebarMenuSubButton
-            render={<NavLink to={item.href} />}
+            render={<NavLink to={item.href} end />}
             isActive={isExactActive}
             className={menuInteractiveTextClass}
           >

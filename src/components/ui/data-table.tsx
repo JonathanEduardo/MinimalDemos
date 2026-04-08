@@ -99,7 +99,7 @@ export function DataTable<TData extends object>({
               value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder={filterPlaceholder}
-              className="datatable-search-input"
+              className="datatable-search-input pl-9"
             />
           </div>
 
