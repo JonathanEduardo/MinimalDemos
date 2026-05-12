@@ -34,7 +34,7 @@ Color secundario del sistema, usado para acciones secundarias y alertas.
 
 Para Success, Warning y Danger, usamos los colores de Tailwind directamente:
 
-- **Success (Verde)**: `green-700`, `green-700`, etc.  
+- **Success (Verde)**: `green-700`, `-700`, etc.  
   Usado para: aprobaciones, éxitos, confirmaciones
   
 - **Warning (Amarillo)**: `yellow-500`, `amber-500`, etc.  

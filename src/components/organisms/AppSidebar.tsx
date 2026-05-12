@@ -39,7 +39,7 @@ type CatalogItem = {
 // ── Datos de menú ──────────────────────────────────────────────────────────────
 
 const menuPrincipal: CatalogItem[] = [
-  { title: "Dashboard",     icon: LayoutDashboard, href: "/" },
+  { title: "Dashboard",     icon: LayoutDashboard, href: "/dashboard" },
   { title: "Permisos",      icon: ShieldCheck,     href: "/admin" },
   { title: "QR Check",      icon: QrCode,          href: "/guardia" },
   { title: "Componentes", icon: Settings2,       href: "/components" },

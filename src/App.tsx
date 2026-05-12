@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { VisitasProvider } from '@/store/visitas'
-import {  AdminPage, GuardiaPage, ComponentsPage, ProveedorPage } from '@/components/pages'
+import {  AdminPage, GuardiaPage, ComponentsPage, ProveedorPage, DashboardPage } from '@/components/pages'
 import './App.css'
 
 function App() {
@@ -15,6 +15,8 @@ function App() {
           <Route path="/components" element={<ComponentsPage />} />
           <Route path="/settings" element={<ComponentsPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />
+          <Route path="/dashboard" element={<DashboardPage />} />
+          
         </Routes>
       </VisitasProvider>
     </BrowserRouter>
