@@ -80,7 +80,7 @@ function PantallaInicio({ onSelect }: { onSelect: (m: Mode) => void }) {
         <div
           
          
-          className="w-2/3 mx-auto group text-left rounded-2xl border  bg-white p-6  border-gray-200 transition-transform duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
+          className="w-full md:w-2/3 mx-auto group text-left rounded-2xl border  bg-white p-6  border-gray-200 transition-transform duration-200  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[rgb(var(--terciary-base))]"
         >
 
           <div className="flex flex-row gap-6 ">
